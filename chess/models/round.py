@@ -1,7 +1,4 @@
-import tournament
-
-
-class Round(tournament.Tournament):
+class Round:
     def __init__(self, name, matches, start_datetime, end_datetime):
         self.name = name
         self.matches = matches
