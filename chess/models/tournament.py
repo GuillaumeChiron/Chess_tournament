@@ -9,3 +9,17 @@ class Tournament:
         self.rounds = rounds
         self.total_rounds = total_rounds
         self.players = players
+
+    def generate_round(self):
+        pass
+
+    def transform_to_dict(self):
+        return {
+            "Nom": self.name,
+            "Lieu": self.location,
+            "Date de début": self.start_date,
+            "Date de fin": self.end_date,
+            "Rounds": self.rounds,
+            "Nombre de rounds": self.total_rounds,
+            "Joueurs": self.players,
+        }
