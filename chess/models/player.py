@@ -13,5 +13,11 @@ class Player:
             "Date de naissance": self.birth_date,
         }
 
-    def deserialize_to_dict():
-        pass
+    @classmethod
+    def deserialize_to_dict(cls, dict):
+        return cls(
+            name=dict["Prenom"],
+            last_name=dict["Nom"],
+            chess_id=dict["Identifiant"],
+            birth_date=dict["Date de naissance"],
+        )

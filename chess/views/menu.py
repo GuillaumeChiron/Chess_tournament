@@ -1,5 +1,6 @@
 from chess.views.player import player_menu
 from chess.views.tournament import tournament_menu
+from chess.views.reports import reports_menu
 from rich.console import Console
 
 rich = Console()
@@ -12,11 +13,12 @@ def menu_principal():
         print(" ")
         rich.print("1 Joueur", style="green")
         rich.print("2 Tournoi", style="green")
-        rich.print("3 Quitter", style="green")
+        rich.print("3 Rapports", style="green")
+        rich.print("4 Quitter l'application", style="red bold")
         print(" ")
 
         choice = int(rich.input("[yellow]Veuillez faire un choix: [/]"))
-        print("------------------------")
+        print(" ")
 
         if choice == 1:
             player_menu()
@@ -25,6 +27,9 @@ def menu_principal():
             tournament_menu()
 
         elif choice == 3:
+            reports_menu()
+
+        elif choice == 4:
             rich.print("Application quittée", style="red")
             print(" ")
             quit()

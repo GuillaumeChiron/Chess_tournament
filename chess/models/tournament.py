@@ -1,6 +1,14 @@
 class Tournament:
     def __init__(
-        self, name, location, start_date, end_date, rounds, total_rounds, players
+        self,
+        name,
+        location,
+        start_date,
+        end_date,
+        rounds,
+        players,
+        description,
+        total_rounds="4",
     ):
         self.name = name
         self.location = location
@@ -9,11 +17,12 @@ class Tournament:
         self.rounds = rounds
         self.total_rounds = total_rounds
         self.players = players
+        self.description = description
 
     def generate_round(self):
         pass
 
-    def transform_to_dict(self):
+    def serialize_to_dict(self):
         return {
             "Nom": self.name,
             "Lieu": self.location,
@@ -22,4 +31,18 @@ class Tournament:
             "Rounds": self.rounds,
             "Nombre de rounds": self.total_rounds,
             "Joueurs": self.players,
+            "Description": self.description,
         }
+
+    @classmethod
+    def deserialize_to_dict(cls, dict):
+        return cls(
+            name=dict["Nom"],
+            location=dict["Lieu"],
+            start_date=dict["Date de début"],
+            end_date=dict["Date de fin"],
+            rounds=dict["Rounds"],
+            total_rounds=dict["nombre de rounds"],
+            players=dict["Joueurs"],
+            description=dict["Description"],
+        )
