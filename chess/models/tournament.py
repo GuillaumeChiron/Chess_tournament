@@ -22,7 +22,7 @@ class Tournament:
     def generate_round(self):
         pass
 
-    def serialize_to_dict(self):
+    def to_dict(self):
         return {
             "Nom": self.name,
             "Lieu": self.location,
@@ -34,9 +34,9 @@ class Tournament:
             "Description": self.description,
         }
 
-    @classmethod
-    def deserialize_to_dict(cls, dict):
-        return cls(
+    @staticmethod
+    def from_dict(dict):
+        return Tournament(
             name=dict["Nom"],
             location=dict["Lieu"],
             start_date=dict["Date de début"],

@@ -24,7 +24,7 @@ def player_menu():
             print(" ")
 
             player_data = Player(name, last_name, chess_id, birth)
-            joueur = player_data.serialize_to_dict()
+            joueur = player_data.to_dict()
 
             for info in joueur:
                 rich.print(f"[blue bold]{info}[/] : {joueur[info]}")

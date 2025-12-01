@@ -1,6 +1,6 @@
-from chess.views.player import player_menu
-from chess.views.tournament import tournament_menu
-from chess.views.reports import reports_menu
+from chess.views.player_view import player_menu
+from chess.views.tournament_view import tournament_menu
+from chess.views.reports_view import reports_menu
 from rich.console import Console
 
 rich = Console()

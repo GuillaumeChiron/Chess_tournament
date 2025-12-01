@@ -1,9 +1,9 @@
 class Round:
-    def __init__(self, name, matches, start_datetime, end_datetime):
+    def __init__(self, name, matches, start_time, end_time):
         self.name = name
         self.matches = matches
-        self.start_datetime = start_datetime
-        self.end_datetime = end_datetime
+        self.start_time = start_time
+        self.end_time = end_time
 
     def start_round(self):
         pass
@@ -11,10 +11,19 @@ class Round:
     def end_round(self):
         pass
 
-    def transform_to_dict(self):
+    def serialize_to_dict(self):
         return {
             "Nom": self.name,
             "Matches": self.matches,
-            "Heure-début": self.start_datetime,
-            "Heure-fin": self.end_datetime,
+            "Heure de début": self.start_time,
+            "Heure de fin": self.end_time,
         }
+
+    @staticmethod
+    def deserialize_from_dict(dict):
+        return Round(
+            name=dict["Nom"],
+            matches=dict["Matches"],
+            start_time=dict["Heure de début"],
+            end_time=dict["Heure de fin"],
+        )
