@@ -30,6 +30,6 @@ def menu_principal():
             reports_menu()
 
         elif choice == 4:
-            rich.print("Application quittée", style="red")
+            rich.print("Application quittée", style="red bold")
             print(" ")
             quit()

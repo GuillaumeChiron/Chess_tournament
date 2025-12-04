@@ -1,0 +1,22 @@
+{
+    "_default": {
+        "1": {
+            "Nom": "Tournoi 1",
+            "Lieu": "Pornichet",
+            "Date de debut": "03/12/2025",
+            "Date de fin": "06/12/2025",
+            "Nombre de rounds": "4",
+            "Joueurs": "guillaume alyssa arnaud amelie",
+            "Description": "Tournoi plaisir entre amateurs"
+        },
+        "2": {
+            "Nom": "Tournoi 2",
+            "Lieu": "Nantes",
+            "Date de debut": "13/01/2026",
+            "Date de fin": "15/01/2026",
+            "Nombre de rounds": "4",
+            "Joueurs": "baptiste antoine julie celine rose",
+            "Description": "Final des championnats du monde"
+        }
+    }
+}

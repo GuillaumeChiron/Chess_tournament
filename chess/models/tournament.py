@@ -5,7 +5,6 @@ class Tournament:
         location,
         start_date,
         end_date,
-        rounds,
         players,
         description,
         total_rounds="4",
@@ -14,7 +13,6 @@ class Tournament:
         self.location = location
         self.start_date = start_date
         self.end_date = end_date
-        self.rounds = rounds
         self.total_rounds = total_rounds
         self.players = players
         self.description = description
@@ -26,9 +24,8 @@ class Tournament:
         return {
             "Nom": self.name,
             "Lieu": self.location,
-            "Date de début": self.start_date,
+            "Date de debut": self.start_date,
             "Date de fin": self.end_date,
-            "Rounds": self.rounds,
             "Nombre de rounds": self.total_rounds,
             "Joueurs": self.players,
             "Description": self.description,
@@ -39,7 +36,7 @@ class Tournament:
         return Tournament(
             name=dict["Nom"],
             location=dict["Lieu"],
-            start_date=dict["Date de début"],
+            start_date=dict["Date de debut"],
             end_date=dict["Date de fin"],
             rounds=dict["Rounds"],
             total_rounds=dict["nombre de rounds"],

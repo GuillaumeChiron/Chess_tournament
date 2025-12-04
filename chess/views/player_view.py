@@ -1,5 +1,5 @@
 from rich.console import Console
-from chess.models.player import Player
+from chess.controllers.player_controller import add_player, print_player
 
 rich = Console()
 
@@ -22,20 +22,14 @@ def player_menu():
             chess_id = rich.input("[yellow]chess_ID: [/]")
             birth = rich.input("[yellow]Date de niassance: ")
             print(" ")
-
-            player_data = Player(name, last_name, chess_id, birth)
-            joueur = player_data.to_dict()
-
-            for info in joueur:
-                rich.print(f"[blue bold]{info}[/] : {joueur[info]}")
-            print(" ")
-            rich.print("Joueur ajouté", style="blue")
+            add_player(name, last_name, chess_id, birth)
             print(" ")
 
         elif option == 2:
-            rich.input("[yellow]Quel joueur voulez-vous afficher ? [/]")
+            name1 = rich.input("[yellow]Quel joueur voulez-vous afficher ? [/]")
             print(" ")
-            rich.print("Joueur affiché", style="blue")
+            print_player(name1)
             print(" ")
+
         elif option == 3:
             break
