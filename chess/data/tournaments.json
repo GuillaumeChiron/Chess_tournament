@@ -17,6 +17,34 @@
             "Nombre de rounds": "4",
             "Joueurs": "baptiste antoine julie celine rose",
             "Description": "Final des championnats du monde"
+        },
+        "3": {
+            "Nom": "Tournoi 3",
+            "Lieu": "Saint-Nazaire",
+            "Date de debut": "09/10/2025",
+            "Date de fin": "12/10/2025",
+            "Nombre de rounds": "4",
+            "Joueurs": "guillaume jeremy lucas mathis cecile nolwenn jean lucie julie samia alexandre",
+            "Description": "Tournoi du coll\u00e8ge Saint-Martin"
+        },
+        "4": {
+            "Nom": "Tournoi 4",
+            "Lieu": "Paris",
+            "Date de debut": "25/02/2026",
+            "Date de fin": "28/02/2026",
+            "Nombre de rounds": "4",
+            "Joueurs": "Jacque alice louise antoine raphael baptiste guillaume arnaud",
+            "Description": "Finale des championnats d'europe"
+        },
+        "5": {
+            "Nom": "Tournoi 7",
+            "Lieu": "Pornichet",
+            "Date de debut": "2025-12-05T11:23:31.941389",
+            "Date de fin": null,
+            "Round actuel": null,
+            "Nombre de rounds": "6",
+            "Joueurs": "guillaume, alyssa, arnaud, amelie",
+            "Description": "Tournoi fun"
         }
     }
 }

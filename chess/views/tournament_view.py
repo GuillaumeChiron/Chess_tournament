@@ -20,16 +20,14 @@ def tournament_menu():
 
             name = rich.input("[yellow]Nom: [/]")
             location = rich.input("[yellow]Lieu: [/]")
-            start_date = rich.input("[yellow]Date de début: [/]")
-            end_date = rich.input("[yellow]Date de fin: [/]")
             total_rounds = rich.input("[yellow]Nombre de rounds(minimum 4): [/]")
             players = rich.input("[yellow]Liste des joueurs: [/]")
             description = rich.input("[yellow]Description: [/]")
+            round = None
+
             print(" ")
-            add_tournament(
-                name, location, start_date, end_date, players, description, total_rounds
-            )
-            rich.print("Tournoi créé", style="blue")
+
+            add_tournament(name, location, players, description, total_rounds, round)
             print(" ")
 
         elif option == 2:

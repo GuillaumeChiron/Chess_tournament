@@ -1,17 +1,26 @@
+from datetime import datetime
+from chess.models.match import Match
+
+
 class Round:
-    def __init__(self, name, matches, start_time, end_time):
+    def __init__(self, name, matches=[]):
         self.name = name
         self.matches = matches
-        self.start_time = start_time
-        self.end_time = end_time
+        self.start_time = None
+        self.end_time = None
 
     def start_round(self):
-        pass
+        self.start_time = datetime.now().isoformat()
+        return self.start_time
 
     def end_round(self):
-        pass
+        self.end_time = datetime.now().isoformat()
+        return self.end_time
 
-    def serialize_to_dict(self):
+    def generate_round(self):
+        return self.matches
+
+    def to_dict(self):
         return {
             "Nom": self.name,
             "Matches": self.matches,
@@ -20,7 +29,7 @@ class Round:
         }
 
     @staticmethod
-    def deserialize_from_dict(dict):
+    def from_dict(dict):
         return Round(
             name=dict["Nom"],
             matches=dict["Matches"],

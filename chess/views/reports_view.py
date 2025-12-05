@@ -1,6 +1,12 @@
+from chess.controllers.player_controller import print_list_players
+from chess.controllers.tournament_controller import print_list_tournament
 from rich.console import Console
+from rich.table import Table
+from tinydb import TinyDB, Query
 
 rich = Console()
+player_db = TinyDB("chess/data/players.json")
+qr = Query()
 
 
 def reports_menu():
@@ -15,11 +21,11 @@ def reports_menu():
         print(" ")
 
         if option == 1:
-            rich.print("Liste joueurs: ", style="blue")
+            print_list_players()
             print(" ")
 
         elif option == 2:
-            rich.print("Liste des tounois: ", style="blue")
+            print_list_tournament()
             print(" ")
 
         elif option == 3:
