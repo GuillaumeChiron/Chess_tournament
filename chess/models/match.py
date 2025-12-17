@@ -17,14 +17,14 @@ class Match:
             )
         }
 
-    @staticmethod
-    def from_dict(dict):
+    @classmethod
+    def from_dict(cls, dict):
         for cle, value in dict.items():
 
-            return Match(
+            return cls(
                 name=cle,
-                player1=value[0][0],
-                player2=value[1][0],
+                player1=Player(value[0][0], "", None, None),
+                player2=Player(value[1][0], "", None, None),
                 score1=value[0][1],
                 score2=value[1][1],
             )

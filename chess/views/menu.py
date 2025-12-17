@@ -11,25 +11,33 @@ def menu_principal():
     while True:
 
         print(" ")
-        rich.print("1 Joueur", style="green")
-        rich.print("2 Tournoi", style="green")
-        rich.print("3 Rapports", style="green")
-        rich.print("4 Quitter l'application", style="red bold")
+        rich.print("1 Tournoi", style="green bold")
+        rich.print("2 Rapports", style="green bold")
+        rich.print("3 Quitter l'application", style="red bold")
         print(" ")
 
         choice = int(rich.input("[yellow]Veuillez faire un choix: [/]"))
         print(" ")
 
         if choice == 1:
-            player_menu()
-
+            while True:
+                rich.print("1 Interface des joueurs", style="green bold")
+                rich.print("2 Interface des tournois", style="green bold")
+                rich.print("3 Quitter", style="red bold")
+                print(" ")
+                option = int(rich.input("[yellow]Veuillez faire votre choix: [/]"))
+                print(" ")
+                if option == 1:
+                    player_menu()
+                    print(" ")
+                elif option == 2:
+                    tournament_menu()
+                    print(" ")
+                elif option == 3:
+                    break
         elif choice == 2:
-            tournament_menu()
-
-        elif choice == 3:
             reports_menu()
-
-        elif choice == 4:
+        elif choice == 3:
             rich.print("Application quittée", style="red bold")
             print(" ")
             quit()

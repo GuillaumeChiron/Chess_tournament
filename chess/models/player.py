@@ -10,14 +10,14 @@ class Player:
             "Prenom": self.name,
             "Nom": self.last_name,
             "Identifiant": self.player_id,
-            "Date de naissance": self.birth_date,
+            "Date_de_naissance": self.birth_date,
         }
 
-    @staticmethod
-    def from_dict(dict):
-        return Player(
+    @classmethod
+    def from_dict(cls, dict):
+        return cls(
             name=dict["Prenom"],
             last_name=dict["Nom"],
             player_id=dict["Identifiant"],
-            birth_date=dict["Date de naissance"],
+            birth_date=dict["Date_de_naissance"],
         )

@@ -1,50 +1,164 @@
 {
     "_default": {
         "1": {
-            "Nom": "Tournoi 1",
-            "Lieu": "Pornichet",
-            "Date de debut": "03/12/2025",
-            "Date de fin": "06/12/2025",
-            "Nombre de rounds": "4",
-            "Joueurs": "guillaume alyssa arnaud amelie",
-            "Description": "Tournoi plaisir entre amateurs"
+            "Nom": "Tournoi 9",
+            "Lieu": "Paris",
+            "Date de debut": "10/12/2025",
+            "Date de fin": "10/12/2025",
+            "Joueurs": [
+                "guillaume",
+                "alyssa",
+                "arnaud",
+                "amelie",
+                "Antoine",
+                "christophe",
+                "alexandre",
+                "julie"
+            ],
+            "Description": "Tournoi fun",
+            "Rounds": {
+                "Round 1": [
+                    {
+                        "Match1": [
+                            [
+                                "alexandre",
+                                1
+                            ],
+                            [
+                                "guillaume",
+                                1
+                            ]
+                        ]
+                    },
+                    {
+                        "Match2": [
+                            [
+                                "julie",
+                                1
+                            ],
+                            [
+                                "benjamin",
+                                1
+                            ]
+                        ]
+                    },
+                    {
+                        "Match3": [
+                            [
+                                "arnaud",
+                                1
+                            ],
+                            [
+                                "christophe",
+                                1
+                            ]
+                        ]
+                    },
+                    {
+                        "Match4": [
+                            [
+                                "maxime",
+                                1
+                            ],
+                            [
+                                "Antoine",
+                                1
+                            ]
+                        ]
+                    },
+                    {
+                        "Match5": [
+                            [
+                                "alyssa",
+                                1
+                            ],
+                            [
+                                "amelie",
+                                1
+                            ]
+                        ]
+                    }
+                ]
+            },
+            "Round actuel": 1,
+            "Nombre de rounds": 4
         },
         "2": {
-            "Nom": "Tournoi 2",
-            "Lieu": "Nantes",
-            "Date de debut": "13/01/2026",
-            "Date de fin": "15/01/2026",
-            "Nombre de rounds": "4",
-            "Joueurs": "baptiste antoine julie celine rose",
-            "Description": "Final des championnats du monde"
-        },
-        "3": {
-            "Nom": "Tournoi 3",
-            "Lieu": "Saint-Nazaire",
-            "Date de debut": "09/10/2025",
-            "Date de fin": "12/10/2025",
-            "Nombre de rounds": "4",
-            "Joueurs": "guillaume jeremy lucas mathis cecile nolwenn jean lucie julie samia alexandre",
-            "Description": "Tournoi du coll\u00e8ge Saint-Martin"
-        },
-        "4": {
-            "Nom": "Tournoi 4",
-            "Lieu": "Paris",
-            "Date de debut": "25/02/2026",
-            "Date de fin": "28/02/2026",
-            "Nombre de rounds": "4",
-            "Joueurs": "Jacque alice louise antoine raphael baptiste guillaume arnaud",
-            "Description": "Finale des championnats d'europe"
-        },
-        "5": {
-            "Nom": "Tournoi 7",
-            "Lieu": "Pornichet",
-            "Date de debut": "2025-12-05T11:23:31.941389",
-            "Date de fin": null,
-            "Round actuel": null,
-            "Nombre de rounds": "6",
-            "Joueurs": "guillaume, alyssa, arnaud, amelie",
-            "Description": "Tournoi fun"
+            "Nom": "tournoi 10",
+            "Lieu": "Reims",
+            "Date de debut": "15/12/2025",
+            "Date de fin": "",
+            "Joueurs": [],
+            "Description": "tournoi des goooooat",
+            "Rounds": {
+                "Nom": "Round 1",
+                "Matches": [
+                    {
+                        "Match1": [
+                            [
+                                "benjamin",
+                                1
+                            ],
+                            [
+                                "arnaud",
+                                2
+                            ]
+                        ]
+                    },
+                    {
+                        "Match2": [
+                            [
+                                "christophe",
+                                1
+                            ],
+                            [
+                                "alexandre",
+                                2
+                            ]
+                        ]
+                    },
+                    {
+                        "Match3": [
+                            [
+                                "amelie",
+                                1
+                            ],
+                            [
+                                "maxime",
+                                2
+                            ]
+                        ]
+                    },
+                    {
+                        "Match4": [
+                            [
+                                "guillaume",
+                                1
+                            ],
+                            [
+                                "alyssa",
+                                2
+                            ]
+                        ]
+                    },
+                    {
+                        "Match5": [
+                            [
+                                "julie",
+                                1
+                            ],
+                            [
+                                "Antoine",
+                                2
+                            ]
+                        ]
+                    }
+                ],
+                "Heure de debut": "17:01",
+                "Heure de fin": "17:01"
+            },
+            "Round actuel": 1,
+            "Nombre de rounds": 4
         }
     }
 }
