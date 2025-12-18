@@ -23,7 +23,7 @@ class Round_controllers:
     # enregistre un round dans la base de données "tournaments.json"
     @staticmethod
     def save_round(name_tournament, matches):
-        tournaments_db.update({"Rounds": matches}, qr.Nom == name_tournament)
+        tournaments_db.update({"Rounds": [matches]}, qr.Nom == name_tournament)
 
     # met à jour les scores des joueurs pour un round précis
     @staticmethod
@@ -34,7 +34,7 @@ class Round_controllers:
             new_match = Match_controllers.update_match_scores(new_scores)
             liste_new_score.append(new_match)
         round.matches = liste_new_score
-        return round.matches
+        return round
 
     # genère le premier round dun tournoi
     @staticmethod
@@ -43,17 +43,17 @@ class Round_controllers:
         from chess.models.match import Match
         from chess.models.round import Round
 
+        players = players.copy()
         round1 = Round("Round 1")
         count = 1
-
         for i in range(int(len(players) / 2)):
 
             name = "Match" + str(count)
             count += 1
 
             tirage = Round_controllers.generate_pairings(players)
-            for i in tirage:
-                players.remove(i)
+            for data_player in tirage:
+                players.remove(data_player)
 
             player1 = Player.from_dict(tirage[0])
             player2 = Player.from_dict(tirage[1])
@@ -63,7 +63,7 @@ class Round_controllers:
             round1.matches.append(match_data)
         return round1
 
-    # genère le riound suivant
+    # genère le round suivant
     @staticmethod
     def generate_next_round():
         pass

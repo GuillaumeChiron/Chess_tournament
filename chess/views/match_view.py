@@ -10,10 +10,18 @@ def ask_scores(data):
         f"{match.name}:\n {match.player1.name} {match.score1} / {match.player2.name} {match.score2}"
     )
     print(" ")
-    match.score1 = int(input(f"Veuillez saisir le score de {match.player1.name}: "))
-    match.score2 = int(input(f"Veuillez saisir le score de {match.player2.name}: "))
+    score = float(input(f"Veuillez saisir le score de {match.player1.name}: "))
     print(" ")
-    rich.print(f"Score {match.player1.name}: {match.score1}")
-    rich.print(f"Score {match.player2.name}: {match.score2}")
+    if score == 1:
+        match.score1 += 1
+    elif score == 0:
+        match.score2 += 1
+    elif score == 0.5:
+        match.score1 += 0.5
+        match.score2 += 0.5
+    print(" ")
+    rich.print(
+        f"Score {match.player1.name}: {match.score1} / {match.player2.name}: {match.score2}"
+    )
     print(" ")
     return match

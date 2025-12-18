@@ -1,162 +1,138 @@
 {
     "_default": {
         "1": {
-            "Nom": "Tournoi 9",
-            "Lieu": "Paris",
-            "Date de debut": "10/12/2025",
-            "Date de fin": "10/12/2025",
+            "Nom": "tournoi 9",
+            "Lieu": "Nantes",
+            "Date de debut": "18/12/2025",
+            "Date de fin": "",
             "Joueurs": [
-                "guillaume",
-                "alyssa",
-                "arnaud",
-                "amelie",
-                "Antoine",
-                "christophe",
-                "alexandre",
-                "julie"
+                {
+                    "Prenom": "guillaume",
+                    "Nom": "chiron",
+                    "Identifiant": "gc1111",
+                    "Date_de_naissance": "14/06/2000"
+                },
+                {
+                    "Prenom": "alyssa",
+                    "Nom": "chiron",
+                    "Identifiant": "al2222",
+                    "Date_de_naissance": "04/05/2008"
+                },
+                {
+                    "Prenom": "arnaud",
+                    "Nom": "chiron",
+                    "Identifiant": "ac3333",
+                    "Date_de_naissance": "05/09/1996"
+                },
+                {
+                    "Prenom": "amelie",
+                    "Nom": "chiron",
+                    "Identifiant": "ac4444",
+                    "Date_de_naissance": "15/01/1993"
+                }
             ],
-            "Description": "Tournoi fun",
-            "Rounds": {
-                "Round 1": [
-                    {
-                        "Match1": [
-                            [
-                                "alexandre",
-                                1
-                            ],
-                            [
-                                "guillaume",
-                                1
+            "Description": "tournoi de lancement",
+            "Rounds": [
+                {
+                    "Nom": "Round 1",
+                    "Matches": [
+                        {
+                            "Match1": [
+                                [
+                                    "guillaume",
+                                    1
+                                ],
+                                [
+                                    "arnaud",
+                                    0
+                                ]
                             ]
-                        ]
-                    },
-                    {
-                        "Match2": [
-                            [
-                                "julie",
-                                1
-                            ],
-                            [
-                                "benjamin",
-                                1
+                        },
+                        {
+                            "Match2": [
+                                [
+                                    "amelie",
+                                    0.5
+                                ],
+                                [
+                                    "alyssa",
+                                    0.5
+                                ]
                             ]
-                        ]
-                    },
-                    {
-                        "Match3": [
-                            [
-                                "arnaud",
-                                1
-                            ],
-                            [
-                                "christophe",
-                                1
-                            ]
-                        ]
-                    },
-                    {
-                        "Match4": [
-                            [
-                                "maxime",
-                                1
-                            ],
-                            [
-                                "Antoine",
-                                1
-                            ]
-                        ]
-                    },
-                    {
-                        "Match5": [
-                            [
-                                "alyssa",
-                                1
-                            ],
-                            [
-                                "amelie",
-                                1
-                            ]
-                        ]
-                    }
-                ]
-            },
+                        }
+                    ],
+                    "Heure de debut": "16:42",
+                    "Heure de fin": "16:43"
+                }
+            ],
             "Round actuel": 1,
             "Nombre de rounds": 4
         },
         "2": {
             "Nom": "tournoi 10",
-            "Lieu": "Reims",
-            "Date de debut": "15/12/2025",
+            "Lieu": "Nantes",
+            "Date de debut": "",
             "Date de fin": "",
-            "Joueurs": [],
-            "Description": "tournoi des goooooat",
-            "Rounds": {
-                "Nom": "Round 1",
-                "Matches": [
-                    {
-                        "Match1": [
-                            [
-                                "benjamin",
-                                1
-                            ],
-                            [
-                                "arnaud",
-                                2
+            "Joueurs": [
+                {
+                    "Prenom": "guillaume",
+                    "Nom": "chiron",
+                    "Identifiant": "gc1111",
+                    "Date_de_naissance": "14/06/2000"
+                },
+                {
+                    "Prenom": "alyssa",
+                    "Nom": "chiron",
+                    "Identifiant": "al2222",
+                    "Date_de_naissance": "04/05/2008"
+                },
+                {
+                    "Prenom": "maxime",
+                    "Nom": "legrand",
+                    "Identifiant": "ml5638",
+                    "Date_de_naissance": "03/02/1997"
+                },
+                {
+                    "Prenom": "julie",
+                    "Nom": "dutexier",
+                    "Identifiant": "JD5638",
+                    "Date_de_naissance": "07/06/2000"
+                }
+            ],
+            "Description": "tournoi de lancement",
+            "Rounds": [
+                {
+                    "Nom": "Round 1",
+                    "Matches": [
+                        {
+                            "Match1": [
+                                [
+                                    "julie",
+                                    0
+                                ],
+                                [
+                                    "maxime",
+                                    1
+                                ]
                             ]
-                        ]
-                    },
-                    {
-                        "Match2": [
-                            [
-                                "christophe",
-                                1
-                            ],
-                            [
-                                "alexandre",
-                                2
+                        },
+                        {
+                            "Match2": [
+                                [
+                                    "alyssa",
+                                    1
+                                ],
+                                [
+                                    "guillaume",
+                                    0
+                                ]
                             ]
-                        ]
-                    },
-                    {
-                        "Match3": [
-                            [
-                                "amelie",
-                                1
-                            ],
-                            [
-                                "maxime",
-                                2
-                            ]
-                        ]
-                    },
-                    {
-                        "Match4": [
-                            [
-                                "guillaume",
-                                1
-                            ],
-                            [
-                                "alyssa",
-                                2
-                            ]
-                        ]
-                    },
-                    {
-                        "Match5": [
-                            [
-                                "julie",
-                                1
-                            ],
-                            [
-                                "Antoine",
-                                2
-                            ]
-                        ]
-                    }
-                ],
-                "Heure de debut": "17:01",
-                "Heure de fin": "17:01"
-            },
+                        }
+                    ],
+                    "Heure de debut": "16:53",
+                    "Heure de fin": "16:53"
+                }
+            ],
             "Round actuel": 1,
             "Nombre de rounds": 4
         }

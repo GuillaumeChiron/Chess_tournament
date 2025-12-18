@@ -7,10 +7,10 @@ class Tournament:
         self,
         name,
         location,
-        players: Player,
+        players,
         description,
         rounds=[],
-        current_round=1,
+        current_round_index=1,
         total_rounds=4,
     ):
         self.name = name
@@ -18,7 +18,7 @@ class Tournament:
         self.players = players
         self.rounds = rounds
         self.description = description
-        self.current_round_index = current_round
+        self.current_round_index = current_round_index
         self.total_rounds = total_rounds
         self.start_date = ""
         self.end_date = ""
@@ -47,13 +47,16 @@ class Tournament:
 
     @classmethod
     def from_dict(cls, dict):
-        return cls(
+        tournoi = cls(
             name=dict["Nom"],
             location=dict["Lieu"],
-            start_date=dict["Date de debut"],
-            end_date=dict["Date de fin"],
+            rounds=dict["Rounds"],
             current_round_index=dict["Round actuel"],
-            total_rounds=dict["nombre de rounds"],
+            total_rounds=dict["Nombre de rounds"],
             players=dict["Joueurs"],
             description=dict["Description"],
         )
+        tournoi.start_date = dict["Date de debut"]
+        tournoi.end_date = dict["Date de fin"]
+
+        return tournoi

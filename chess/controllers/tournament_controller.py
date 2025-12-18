@@ -30,7 +30,8 @@ class Tournament_controller:
 
     # met à jour un tournoi
     @staticmethod
-    def update_tournament(name_tournament, data):
+    def update_tournament(name_tournament, tournoi):
+        data = tournoi.to_dict()
         tournaments_db.update(data, qr.Nom == name_tournament)
 
     # recupère les données du fichier "tournaments.json"
@@ -43,14 +44,27 @@ class Tournament_controller:
     @staticmethod
     def get_tournament(data):
         result = tournaments_db.search(qr.Nom.test(lambda v: v.lower() == data.lower()))
-        return result
+        tournoi = Tournament.from_dict(result[0])
+        return tournoi
 
-    # execute un round
+    # execute un round du tournoi
     @staticmethod
-    def launch_round():
-        pass
+    def launch_round(tournoi):
+        from chess.controllers.round_controller import Round_controllers
+        from chess.models.round import Round
+
+        round = Round.from_dict(tournoi.rounds[0])
+        round.start_round()
+        round_update = Round_controllers.update_round(round)
+        round_update.end_round()
+        tournoi.rounds[tournoi.current_round_index - 1] = round_update.to_dict()
+        return tournoi
 
     # execute un tournoi
     @staticmethod
-    def run_tournament():
-        pass
+    def run_tournament(tournoi):
+
+        round = Tournament_controller.launch_round(tournoi.players)
+        round_data = round.to_dict()
+        tournoi.rounds.append(round_data)
+        return tournoi

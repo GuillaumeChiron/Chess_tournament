@@ -1,6 +1,6 @@
 from rich.console import Console
 from chess.controllers.player_controller import Player_controllers
-from chess.controllers.reports_controller import player
+from chess.controllers.reports_controller import Reports_controller
 
 rich = Console()
 
@@ -32,15 +32,12 @@ def select_players():
     from chess.models.player import Player
 
     liste_players = []
-    liste_players_data = []
     count = int(input("Nombre de particiapants: "))
     for i in range(count):
         id = input("Identifiant du joueur: ")
         player_data = Player_controllers.get_player(id)
-        liste_players_data.append(player_data[0])
-        joueur = Player.from_dict(player_data[0])
-        liste_players.append(joueur.name)
-    return liste_players, liste_players_data
+        liste_players.append(player_data[0])
+    return liste_players
 
 
 # ajouyer un joueur à la base de données
@@ -58,7 +55,7 @@ def add_player():
 def print_player():
     name = rich.input("[yellow]Quel joueur voulez-vous afficher ? [/]")
     print(" ")
-    table_player = player(name)
+    table_player = Reports_controller.player(name)
     if table_player:
         rich.print(table_player)
     else:

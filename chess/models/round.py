@@ -28,9 +28,7 @@ class Round:
 
     @classmethod
     def from_dict(cls, dict):
-        return cls(
-            name=dict["Nom"],
-            matches=dict["Matches"],
-            start_time=dict["Heure de debut"],
-            end_time=dict["Heure de fin"],
-        )
+        round = cls(name=dict["Nom"], matches=dict["Matches"])
+        round.start_time = dict["Heure de debut"]
+        round.end_time = dict["Heure de fin"]
+        return round
