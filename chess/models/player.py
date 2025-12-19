@@ -1,8 +1,9 @@
 class Player:
-    def __init__(self, name, last_name, player_id, birth_date):
+    def __init__(self, name, last_name, player_id, birth_date, score=0):
         self.name = name
         self.last_name = last_name
         self.player_id = player_id
+        self.score = score
         self.birth_date = birth_date
 
     def to_dict(self):
@@ -11,6 +12,7 @@ class Player:
             "Nom": self.last_name,
             "Identifiant": self.player_id,
             "Date_de_naissance": self.birth_date,
+            "Score": self.score,
         }
 
     @classmethod
@@ -20,4 +22,5 @@ class Player:
             last_name=dict["Nom"],
             player_id=dict["Identifiant"],
             birth_date=dict["Date_de_naissance"],
+            score=dict["Score"],
         )

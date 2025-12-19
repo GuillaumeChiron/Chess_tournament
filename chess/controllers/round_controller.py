@@ -2,7 +2,7 @@ from rich.console import Console
 from tinydb import TinyDB, Query
 import random
 from chess.controllers.match_controller import Match_controllers
-from chess.views.match_view import ask_scores
+
 
 rich = Console()
 tournaments_db = TinyDB("chess/data/tournaments.json")
@@ -28,6 +28,8 @@ class Round_controllers:
     # met à jour les scores des joueurs pour un round précis
     @staticmethod
     def update_round(round):
+        from chess.views.match_view import ask_scores
+
         liste_new_score = []
         for data in round.matches:
             new_scores = ask_scores(data)

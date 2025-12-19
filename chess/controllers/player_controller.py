@@ -53,3 +53,31 @@ class Player_controllers:
                 qr.Date_de_naissance.test(lambda v: v.lower() == data.lower())
             )
         return result
+
+    def update_score_players(tournoi):
+        from chess.models.round import Round
+        from chess.models.match import Match
+
+        round = Round.from_dict(tournoi.rounds[0])
+
+        matches = []
+        liste_players = []
+
+        for i in round.matches:
+            match = Match.from_dict(i)
+            score = {
+                match.player1.name: match.player1.score,
+                match.player2.name: match.player2.score,
+            }
+            matches.append(score)
+
+        for i in matches:
+            for cle, value in i.items():
+                player = Player.from_dict(Player_controllers.get_player(cle)[0])
+                if player.name == cle:
+                    player.score = value
+                liste_players.append(player.to_dict())
+
+        liste_players.sort(key=lambda x: x["Score"], reverse=True)
+        tournoi.players = liste_players
+        return tournoi

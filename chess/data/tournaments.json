@@ -1,37 +1,41 @@
 {
     "_default": {
         "1": {
-            "Nom": "tournoi 9",
+            "Nom": "Tournoi 1",
             "Lieu": "Nantes",
             "Date de debut": "18/12/2025",
             "Date de fin": "",
             "Joueurs": [
                 {
-                    "Prenom": "guillaume",
-                    "Nom": "chiron",
-                    "Identifiant": "gc1111",
-                    "Date_de_naissance": "14/06/2000"
+                    "Prenom": "Alyssa",
+                    "Nom": "Chiron",
+                    "Identifiant": "ac9034",
+                    "Date_de_naissance": "04/05/2008",
+                    "Score": 0
                 },
                 {
-                    "Prenom": "alyssa",
-                    "Nom": "chiron",
-                    "Identifiant": "al2222",
-                    "Date_de_naissance": "04/05/2008"
+                    "Prenom": "Guillaume",
+                    "Nom": "Chiron",
+                    "Identifiant": "gc7845",
+                    "Date_de_naissance": "14/06/2000",
+                    "Score": 0
                 },
                 {
-                    "Prenom": "arnaud",
-                    "Nom": "chiron",
-                    "Identifiant": "ac3333",
-                    "Date_de_naissance": "05/09/1996"
+                    "Prenom": "Julie",
+                    "Nom": "Carret",
+                    "Identifiant": "jc6736",
+                    "Date_de_naissance": "11/12/1999",
+                    "Score": 0
                 },
                 {
-                    "Prenom": "amelie",
-                    "Nom": "chiron",
-                    "Identifiant": "ac4444",
-                    "Date_de_naissance": "15/01/1993"
+                    "Prenom": "Maxime",
+                    "Nom": "Dupont",
+                    "Identifiant": "md5210",
+                    "Date_de_naissance": "23/04/2001",
+                    "Score": 0
                 }
             ],
-            "Description": "tournoi de lancement",
+            "Description": "Tournoi de test",
             "Rounds": [
                 {
                     "Nom": "Round 1",
@@ -39,11 +43,11 @@
                         {
                             "Match1": [
                                 [
-                                    "guillaume",
-                                    1
+                                    "Julie",
+                                    0
                                 ],
                                 [
-                                    "arnaud",
+                                    "Alyssa",
                                     0
                                 ]
                             ]
@@ -51,86 +55,18 @@
                         {
                             "Match2": [
                                 [
-                                    "amelie",
-                                    0.5
-                                ],
-                                [
-                                    "alyssa",
-                                    0.5
-                                ]
-                            ]
-                        }
-                    ],
-                    "Heure de debut": "16:42",
-                    "Heure de fin": "16:43"
-                }
-            ],
-            "Round actuel": 1,
-            "Nombre de rounds": 4
-        },
-        "2": {
-            "Nom": "tournoi 10",
-            "Lieu": "Nantes",
-            "Date de debut": "",
-            "Date de fin": "",
-            "Joueurs": [
-                {
-                    "Prenom": "guillaume",
-                    "Nom": "chiron",
-                    "Identifiant": "gc1111",
-                    "Date_de_naissance": "14/06/2000"
-                },
-                {
-                    "Prenom": "alyssa",
-                    "Nom": "chiron",
-                    "Identifiant": "al2222",
-                    "Date_de_naissance": "04/05/2008"
-                },
-                {
-                    "Prenom": "maxime",
-                    "Nom": "legrand",
-                    "Identifiant": "ml5638",
-                    "Date_de_naissance": "03/02/1997"
-                },
-                {
-                    "Prenom": "julie",
-                    "Nom": "dutexier",
-                    "Identifiant": "JD5638",
-                    "Date_de_naissance": "07/06/2000"
-                }
-            ],
-            "Description": "tournoi de lancement",
-            "Rounds": [
-                {
-                    "Nom": "Round 1",
-                    "Matches": [
-                        {
-                            "Match1": [
-                                [
-                                    "julie",
+                                    "Guillaume",
                                     0
                                 ],
                                 [
-                                    "maxime",
-                                    1
-                                ]
-                            ]
-                        },
-                        {
-                            "Match2": [
-                                [
-                                    "alyssa",
-                                    1
-                                ],
-                                [
-                                    "guillaume",
+                                    "Maxime",
                                     0
                                 ]
                             ]
                         }
                     ],
-                    "Heure de debut": "16:53",
-                    "Heure de fin": "16:53"
+                    "Heure de debut": "02:28",
+                    "Heure de fin": "02:28"
                 }
             ],
             "Round actuel": 1,
