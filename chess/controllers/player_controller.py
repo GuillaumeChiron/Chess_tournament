@@ -58,11 +58,10 @@ class Player_controllers:
         from chess.models.round import Round
         from chess.models.match import Match
 
-        round = Round.from_dict(tournoi.rounds[0])
+        round = Round.from_dict(tournoi.rounds[tournoi.current_round_index - 1])
 
         matches = []
         liste_players = []
-
         for i in round.matches:
             match = Match.from_dict(i)
             score = {

@@ -2,10 +2,17 @@
     "_default": {
         "1": {
             "Nom": "Tournoi 1",
-            "Lieu": "Nantes",
-            "Date de debut": "18/12/2025",
+            "Lieu": "Pornichet",
+            "Date de debut": "",
             "Date de fin": "",
             "Joueurs": [
+                {
+                    "Prenom": "Guillaume",
+                    "Nom": "Chiron",
+                    "Identifiant": "gc7845",
+                    "Date_de_naissance": "14/06/2000",
+                    "Score": 0
+                },
                 {
                     "Prenom": "Alyssa",
                     "Nom": "Chiron",
@@ -14,10 +21,10 @@
                     "Score": 0
                 },
                 {
-                    "Prenom": "Guillaume",
+                    "Prenom": "Amelie",
                     "Nom": "Chiron",
-                    "Identifiant": "gc7845",
-                    "Date_de_naissance": "14/06/2000",
+                    "Identifiant": "ac6521",
+                    "Date_de_naissance": "15/01/1993",
                     "Score": 0
                 },
                 {
@@ -28,6 +35,13 @@
                     "Score": 0
                 },
                 {
+                    "Prenom": "Arnaud",
+                    "Nom": "Chiron",
+                    "Identifiant": "ac8756",
+                    "Date_de_naissance": "05/09/1996",
+                    "Score": 0
+                },
+                {
                     "Prenom": "Maxime",
                     "Nom": "Dupont",
                     "Identifiant": "md5210",
@@ -35,40 +49,8 @@
                     "Score": 0
                 }
             ],
-            "Description": "Tournoi de test",
-            "Rounds": [
-                {
-                    "Nom": "Round 1",
-                    "Matches": [
-                        {
-                            "Match1": [
-                                [
-                                    "Julie",
-                                    0
-                                ],
-                                [
-                                    "Alyssa",
-                                    0
-                                ]
-                            ]
-                        },
-                        {
-                            "Match2": [
-                                [
-                                    "Guillaume",
-                                    0
-                                ],
-                                [
-                                    "Maxime",
-                                    0
-                                ]
-                            ]
-                        }
-                    ],
-                    "Heure de debut": "02:28",
-                    "Heure de fin": "02:28"
-                }
-            ],
+            "Description": "Tournoi test",
+            "Rounds": [],
             "Round actuel": 1,
             "Nombre de rounds": 4
         }

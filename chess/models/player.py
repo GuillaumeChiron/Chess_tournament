@@ -5,6 +5,7 @@ class Player:
         self.player_id = player_id
         self.score = score
         self.birth_date = birth_date
+        self.played_against = set()
 
     def to_dict(self):
         return {

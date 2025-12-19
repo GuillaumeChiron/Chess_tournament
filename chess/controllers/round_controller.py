@@ -11,15 +11,6 @@ qr = Query()
 
 class Round_controllers:
 
-    # genère une paire de joueurs aléatoire dans une liste de joueurs donnée
-    @staticmethod
-    def generate_pairings(data):
-        tirage = random.sample(data, 2)
-        joueurs = []
-        for info in tirage:
-            joueurs.append(info)
-        return joueurs
-
     # enregistre un round dans la base de données "tournaments.json"
     @staticmethod
     def save_round(name_tournament, matches):
@@ -37,6 +28,15 @@ class Round_controllers:
             liste_new_score.append(new_match)
         round.matches = liste_new_score
         return round
+
+    # genère une paire de joueurs aléatoire dans une liste de joueurs donnée
+    @staticmethod
+    def generate_pairings(data):
+        tirage = random.sample(data, 2)
+        joueurs = []
+        for info in tirage:
+            joueurs.append(info)
+        return joueurs
 
     # genère le premier round dun tournoi
     @staticmethod
@@ -67,5 +67,65 @@ class Round_controllers:
 
     # genère le round suivant
     @staticmethod
-    def generate_next_round():
-        pass
+    def generate_swiss_pairings(players):
+
+        # Tri par score décroissant
+        players = sorted(players, key=lambda p: p.score, reverse=True)
+
+        pairings = []
+        used_ids = set()
+
+        for i, player in enumerate(players):
+            if player.player_id in used_ids:
+                continue
+
+            for opponent in players[i + 1 :]:
+                if opponent.player_id in used_ids:
+                    continue
+                if opponent.player_id not in player.played_against:
+
+                    used_ids.add(player.player_id)
+                    used_ids.add(opponent.player_id)
+
+                    pairings.append(
+                        {
+                            "player_1": f"{player.name} {player.last_name}",
+                            "player_2": f"{opponent.name} {opponent.last_name}",
+                            "ids": (player.player_id, opponent.player_id),
+                            "Score": (player.score, opponent.score),
+                        }
+                    )
+                    break
+            else:
+                raise Exception(
+                    f"Aucun adversaire valide pour {player.name} {player.last_name}"
+                )
+        return pairings
+
+    def generate_next_round(tournoi, pairings):
+        from chess.controllers.player_controller import Player_controllers
+        from chess.models.player import Player
+        from chess.models.match import Match
+        from chess.models.round import Round
+
+        name_round = f"Round {str(tournoi.current_round_index)}"
+        current_round = Round(name_round, [])
+        count = 1
+
+        for i in pairings:
+
+            name_match = "match" + str(count)
+            count += 1
+            player1 = Player_controllers.get_player(i["ids"][0])
+            player2 = Player_controllers.get_player(i["ids"][1])
+
+            player1 = Player.from_dict(player1[0])
+            player2 = Player.from_dict(player2[0])
+
+            player1.score = i["Score"][0]
+            player2.score = i["Score"][1]
+
+            match = Match(name_match, player1, player2)
+            current_round.matches.append(match.to_dict())
+
+        return current_round

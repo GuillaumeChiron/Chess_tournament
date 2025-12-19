@@ -59,15 +59,11 @@ class Tournament_controller:
         round_update = Round_controllers.update_round(round)
         round_update.end_round()
         tournoi.rounds[tournoi.current_round_index - 1] = round_update.to_dict()
-        tournoi.current_round_index += 1
         tournoi = Player_controllers.update_score_players(tournoi)
+        tournoi.current_round_index += 1
         return tournoi
 
     # execute un tournoi
     @staticmethod
     def run_tournament(tournoi):
-
-        round = Tournament_controller.launch_round(tournoi.players)
-        round_data = round.to_dict()
-        tournoi.rounds.append(round_data)
-        return tournoi
+        pass
