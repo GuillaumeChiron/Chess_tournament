@@ -1,5 +1,4 @@
 from datetime import datetime
-from chess.models.player import Player
 
 
 class Tournament:
