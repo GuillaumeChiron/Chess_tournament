@@ -59,7 +59,7 @@ class Tournament_controller:
         round_update = Round_controllers.update_round(round)
         round_update.end_round()
         tournoi.rounds[tournoi.current_round_index - 1] = round_update.to_dict()
-        tournoi = Player_controllers.update_score_players(tournoi)
+        # tournoi = Player_controllers.update_score_players(tournoi)
         tournoi.current_round_index += 1
         return tournoi
 
