@@ -20,16 +20,25 @@ class Round_controllers:
 
     # met à jour les scores des joueurs pour un round précis
     @staticmethod
-    def update_round(round):
+    def update_round(tournoi):
+        from chess.models.round import Round
         from chess.views.match_view import ask_scores
 
+        round = Round.from_dict(tournoi.rounds[tournoi.current_round_index - 1])
+        round.start_round()
         liste_new_score = []
         for data in round.matches:
             new_scores = ask_scores(data)
-            new_match = Match_controllers.update_match_scores(new_scores)
-            liste_new_score.append(new_match)
+            for p in tournoi.players:
+                if p["Prenom"] == new_scores.player1.name:
+                    p["Score"] = new_scores.player1.score
+                if p["Prenom"] == new_scores.player2.name:
+                    p["Score"] = new_scores.player2.score
+
+            liste_new_score.append(new_scores.to_dict())
         round.matches = liste_new_score
-        return round
+        tournoi.rounds[tournoi.current_round_index - 1] = round.to_dict()
+        return tournoi
 
     # genère une paire de joueurs aléatoire dans une liste de joueurs donnée
     @staticmethod
@@ -115,7 +124,7 @@ class Round_controllers:
                     None,
                 )
 
-                if opponent.player_id not in player_entry["Identifiant"]:
+                if opponent.player_id not in player_entry["Adversaires"]:
                     used_ids.add(player.player_id)
                     used_ids.add(opponent.player_id)
 
@@ -127,15 +136,17 @@ class Round_controllers:
                             "Score": (player.score, opponent.score),
                         }
                     )
+                    for p in tournoi.players:
+                        if p["Identifiant"] == player.player_id:
+                            p["Adversaires"].append(opponent.player_id)
+                        if p["Identifiant"] == opponent.player_id:
+                            p["Adversaires"].append(player.player_id)
+
                     break
 
-            else:
-                raise Exception(
-                    f"Aucun adversaire valide pour {player.name} {player.last_name}"
-                )
         return pairings
 
-    def generate_next_round(tournoi, pairings):
+    def generate_next_round(tournoi: Tournament, pairings):
         from chess.controllers.player_controller import Player_controllers
         from chess.models.match import Match
         from chess.models.player import Player
@@ -149,17 +160,14 @@ class Round_controllers:
 
             name_match = "match" + str(count)
             count += 1
-            player1 = Player_controllers.get_player(i["ids"][0])
-            player2 = Player_controllers.get_player(i["ids"][1])
-
-            player1 = Player.from_dict(player1[0])
-            player2 = Player.from_dict(player2[0])
-
             for p in tournoi.players:
-                if p["Identifiant"] == player1.player_id:
-                    p["Adversaires"].append(player2.player_id)
-                if p["Identifiant"] == player2.player_id:
-                    p["Adversaires"].append(player1.player_id)
+                if p["Identifiant"] == i["ids"][0]:
+                    player1 = p
+                if p["Identifiant"] == i["ids"][1]:
+                    player2 = p
+
+            player1 = Player.from_dict(player1)
+            player2 = Player.from_dict(player2)
 
             player1.score = i["Score"][0]
             player2.score = i["Score"][1]

@@ -51,17 +51,13 @@ class Tournament_controller:
     # execute un round du tournoi
     @staticmethod
     def launch_round(tournoi):
-        from chess.controllers.player_controller import Player_controllers
         from chess.controllers.round_controller import Round_controllers
-        from chess.models.round import Round
+        from chess.controllers.player_controller import Player_controllers
 
-        round = Round.from_dict(tournoi.rounds[tournoi.current_round_index - 1])
-        round.start_round()
-        round_update = Round_controllers.update_round(round)
-        round_update.end_round()
-        tournoi.rounds[tournoi.current_round_index - 1] = round_update.to_dict()
-        tournoi = Player_controllers.update_score_players(tournoi)
+        tournoi = Round_controllers.update_round(tournoi)
+        tournoi.players = Player_controllers.sorted_players(tournoi)
         tournoi.current_round_index += 1
+
         return tournoi
 
     # execute un tournoi

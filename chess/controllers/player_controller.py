@@ -54,52 +54,47 @@ class Player_controllers:
             )
         return result
 
+    # Tri les joueurs en fonction de leur score
+    def sorted_players(tournoi):
+
+        players_copy = tournoi.players.copy()
+        list_of_players = []
+        for p in players_copy:
+            list_of_players.append(p)
+
+        # Tri par score décroissant
+        list_of_players = sorted(
+            list_of_players, key=lambda p: p["Score"], reverse=True
+        )
+        return list_of_players
+
     def update_score_players(tournoi):
         from chess.models.match import Match
         from chess.models.round import Round
 
         round = Round.from_dict(tournoi.rounds[tournoi.current_round_index - 1])
-
-        matches = []
+        players_copy = tournoi.players.copy()
+        liste_object_players = []
         liste_players = []
-        for i in round.matches:
-            match = Match.from_dict(i)
-            player1 = Player.from_dict(
-                Player_controllers.get_player(match.player1.name)[0]
-            )
-            player2 = Player.from_dict(
-                Player_controllers.get_player(match.player2.name)[0]
-            )
 
-            player1.score = match.player1.score
-            player1.player_against.append(player2.player_id)
-            player2.score = match.player2.score
-            player2.player_against.append(player1.player_id)
+        for p in players_copy:
+            player = Player.from_dict(p)
+            liste_object_players.append(player)
 
-            liste_players.append(player1.to_dict())
-            liste_players.append(player2.to_dict())
+        for m in round.matches:
+            match = Match.from_dict(m)
 
-        liste_players.sort(key=lambda x: x["Score"], reverse=True)
-        tournoi.players = liste_players
-        return tournoi
+            for p in liste_object_players:
+                if match.player1.name == p.name:
+                    p.score = match.player1.score
+                    liste_object_players.remove(p)
 
+                elif match.player2.name == p.name:
+                    p.score = match.player2.score
+                    liste_object_players.remove(p)
 
-"""
-            score = {
-                match.player1.name: match.player1.score,
-                match.player2.name: match.player2.score,
-            }
-            matches.append(score)
-
-
-        for i in matches:
-            for cle, value in i.items():
-                player = Player.from_dict(Player_controllers.get_player(cle)[0])
-                if player.name == cle:
-                    player.score = value
-                liste_players.append(player.to_dict())
+                liste_players.append(p.to_dict())
 
         liste_players.sort(key=lambda x: x["Score"], reverse=True)
         tournoi.players = liste_players
         return tournoi
-"""
