@@ -1,5 +1,5 @@
-from tinydb import TinyDB, Query
 from rich.table import Table
+from tinydb import Query, TinyDB
 
 tournaments_db = TinyDB("chess/data/tournaments.json")
 players_db = TinyDB("chess/data/players.json")

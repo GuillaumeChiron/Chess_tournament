@@ -1,6 +1,7 @@
 from rich.console import Console
 from rich.table import Table
-from tinydb import TinyDB, Query
+from tinydb import Query, TinyDB
+
 from chess.models.tournament import Tournament
 
 rich = Console()
@@ -50,8 +51,8 @@ class Tournament_controller:
     # execute un round du tournoi
     @staticmethod
     def launch_round(tournoi):
-        from chess.controllers.round_controller import Round_controllers
         from chess.controllers.player_controller import Player_controllers
+        from chess.controllers.round_controller import Round_controllers
         from chess.models.round import Round
 
         round = Round.from_dict(tournoi.rounds[tournoi.current_round_index - 1])
@@ -59,7 +60,7 @@ class Tournament_controller:
         round_update = Round_controllers.update_round(round)
         round_update.end_round()
         tournoi.rounds[tournoi.current_round_index - 1] = round_update.to_dict()
-        # tournoi = Player_controllers.update_score_players(tournoi)
+        tournoi = Player_controllers.update_score_players(tournoi)
         tournoi.current_round_index += 1
         return tournoi
 

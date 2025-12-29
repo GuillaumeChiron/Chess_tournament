@@ -1,7 +1,8 @@
-from chess.controllers.reports_controller import list_players, list_tournaments
 from rich.console import Console
 from rich.table import Table
-from tinydb import TinyDB, Query
+from tinydb import Query, TinyDB
+
+from chess.controllers.reports_controller import list_players, list_tournaments
 
 rich = Console()
 

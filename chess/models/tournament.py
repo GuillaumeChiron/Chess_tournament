@@ -14,7 +14,7 @@ class Tournament:
     ):
         self.name = name
         self.location = location
-        self.players = [{"player": p, "play_against": []} for p in players]
+        self.players = players
         self.rounds = rounds
         self.description = description
         self.current_round_index = current_round_index

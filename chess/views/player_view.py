@@ -1,4 +1,5 @@
 from rich.console import Console
+
 from chess.controllers.player_controller import Player_controllers
 from chess.controllers.reports_controller import Reports_controller
 

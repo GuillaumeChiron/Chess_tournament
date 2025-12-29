@@ -1,7 +1,7 @@
 from rich.console import Console
-from tinydb import TinyDB, Query
-from chess.models.match import Match
+from tinydb import Query, TinyDB
 
+from chess.models.match import Match
 
 # initialise la mise en forme
 rich = Console()

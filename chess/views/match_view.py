@@ -1,4 +1,5 @@
 from rich.console import Console
+
 from chess.models.match import Match
 
 rich = Console()
