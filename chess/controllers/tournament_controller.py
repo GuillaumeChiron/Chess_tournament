@@ -13,12 +13,13 @@ class Tournament_controller:
 
     # ajoute un tournoi dans la base de données
     @staticmethod
-    def create_tournament(name, location, players, description):
+    def create_tournament(name, location, players, description, rounds=4):
         tournament = Tournament(
             name,
             location,
             players,
             description,
+            rounds,
         )
         return tournament
 

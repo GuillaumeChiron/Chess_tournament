@@ -8,9 +8,9 @@ class Tournament:
         location,
         players,
         description,
+        total_rounds=4,
         rounds=[],
         current_round_index=1,
-        total_rounds=4,
     ):
         self.name = name
         self.location = location

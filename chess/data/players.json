@@ -47,6 +47,22 @@
             "Date_de_naissance": "11/12/1999",
             "Score": 0,
             "Adversaires": []
+        },
+        "7": {
+            "Prenom": "Alexandre",
+            "Nom": "Legrand",
+            "Identifiant": "al9031",
+            "Date_de_naissance": "03/10/2000",
+            "Score": 0,
+            "Adversaires": []
+        },
+        "8": {
+            "Prenom": "Marie",
+            "Nom": "Flaret",
+            "Identifiant": "mf6736",
+            "Date_de_naissance": "09/08/2002",
+            "Score": 0,
+            "Adversaires": []
         }
     }
 }
