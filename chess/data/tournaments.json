@@ -7,57 +7,260 @@
             "Date de fin": "",
             "Joueurs": [
                 {
-                    "Prenom": "Guillaume",
-                    "Nom": "Chiron",
-                    "Identifiant": "gc1476",
-                    "Date_de_naissance": "14/06/2000",
-                    "Score": 0,
-                    "Adversaires": []
-                },
-                {
-                    "Prenom": "Alyssa",
-                    "Nom": "Chiron",
-                    "Identifiant": "ac6739",
-                    "Date_de_naissance": "04/05/2008",
-                    "Score": 0,
-                    "Adversaires": []
-                },
-                {
                     "Prenom": "Arnaud",
                     "Nom": "Chiron",
                     "Identifiant": "ac8745",
                     "Date_de_naissance": "05/09/1996",
-                    "Score": 0,
-                    "Adversaires": []
+                    "Score": 4,
+                    "Adversaires": [
+                        "ac6739",
+                        "ac6712",
+                        "jc6736",
+                        "gc1476"
+                    ]
                 },
                 {
                     "Prenom": "Amelie",
                     "Nom": "Chiron",
                     "Identifiant": "ac6712",
                     "Date_de_naissance": "15/01/1993",
-                    "Score": 0,
-                    "Adversaires": []
-                },
-                {
-                    "Prenom": "Maxime",
-                    "Nom": "Dupont",
-                    "Identifiant": "md5210",
-                    "Date_de_naissance": "23/04/2001",
-                    "Score": 0,
-                    "Adversaires": []
+                    "Score": 2.5,
+                    "Adversaires": [
+                        "md5210",
+                        "ac8745",
+                        "gc1476",
+                        "ac6739"
+                    ]
                 },
                 {
                     "Prenom": "Julie",
                     "Nom": "Carret",
                     "Identifiant": "jc6736",
                     "Date_de_naissance": "11/12/1999",
-                    "Score": 0,
-                    "Adversaires": []
+                    "Score": 2,
+                    "Adversaires": [
+                        "gc1476",
+                        "ac6739",
+                        "ac8745",
+                        "md5210"
+                    ]
+                },
+                {
+                    "Prenom": "Alyssa",
+                    "Nom": "Chiron",
+                    "Identifiant": "ac6739",
+                    "Date_de_naissance": "04/05/2008",
+                    "Score": 1.5,
+                    "Adversaires": [
+                        "ac8745",
+                        "jc6736",
+                        "md5210",
+                        "ac6712"
+                    ]
+                },
+                {
+                    "Prenom": "Guillaume",
+                    "Nom": "Chiron",
+                    "Identifiant": "gc1476",
+                    "Date_de_naissance": "14/06/2000",
+                    "Score": 1,
+                    "Adversaires": [
+                        "jc6736",
+                        "md5210",
+                        "ac6712",
+                        "ac8745"
+                    ]
+                },
+                {
+                    "Prenom": "Maxime",
+                    "Nom": "Dupont",
+                    "Identifiant": "md5210",
+                    "Date_de_naissance": "23/04/2001",
+                    "Score": 1,
+                    "Adversaires": [
+                        "ac6712",
+                        "gc1476",
+                        "ac6739",
+                        "jc6736"
+                    ]
                 }
             ],
-            "Description": "Tournoi fun",
-            "Rounds": [],
-            "Round actuel": 1,
+            "Description": "Tournoi de test 1",
+            "Rounds": [
+                {
+                    "Nom": "Round 1",
+                    "Matches": [
+                        {
+                            "Match1": [
+                                [
+                                    "Amelie",
+                                    1
+                                ],
+                                [
+                                    "Maxime",
+                                    0
+                                ]
+                            ]
+                        },
+                        {
+                            "Match2": [
+                                [
+                                    "Julie",
+                                    1
+                                ],
+                                [
+                                    "Guillaume",
+                                    0
+                                ]
+                            ]
+                        },
+                        {
+                            "Match3": [
+                                [
+                                    "Arnaud",
+                                    1
+                                ],
+                                [
+                                    "Alyssa",
+                                    0
+                                ]
+                            ]
+                        }
+                    ],
+                    "Heure de debut": "15:58",
+                    "Heure de fin": ""
+                },
+                {
+                    "Nom": "Round 2",
+                    "Matches": [
+                        {
+                            "match1": [
+                                [
+                                    "Arnaud",
+                                    2
+                                ],
+                                [
+                                    "Amelie",
+                                    1
+                                ]
+                            ]
+                        },
+                        {
+                            "match2": [
+                                [
+                                    "Julie",
+                                    1
+                                ],
+                                [
+                                    "Alyssa",
+                                    1
+                                ]
+                            ]
+                        },
+                        {
+                            "match3": [
+                                [
+                                    "Guillaume",
+                                    1
+                                ],
+                                [
+                                    "Maxime",
+                                    0
+                                ]
+                            ]
+                        }
+                    ],
+                    "Heure de debut": "15:58",
+                    "Heure de fin": ""
+                },
+                {
+                    "Nom": "Round 3",
+                    "Matches": [
+                        {
+                            "match1": [
+                                [
+                                    "Arnaud",
+                                    3
+                                ],
+                                [
+                                    "Julie",
+                                    1
+                                ]
+                            ]
+                        },
+                        {
+                            "match2": [
+                                [
+                                    "Amelie",
+                                    2
+                                ],
+                                [
+                                    "Guillaume",
+                                    1
+                                ]
+                            ]
+                        },
+                        {
+                            "match3": [
+                                [
+                                    "Alyssa",
+                                    1
+                                ],
+                                [
+                                    "Maxime",
+                                    1
+                                ]
+                            ]
+                        }
+                    ],
+                    "Heure de debut": "15:58",
+                    "Heure de fin": ""
+                },
+                {
+                    "Nom": "Round 4",
+                    "Matches": [
+                        {
+                            "match1": [
+                                [
+                                    "Arnaud",
+                                    4
+                                ],
+                                [
+                                    "Guillaume",
+                                    1
+                                ]
+                            ]
+                        },
+                        {
+                            "match2": [
+                                [
+                                    "Amelie",
+                                    2.5
+                                ],
+                                [
+                                    "Alyssa",
+                                    1.5
+                                ]
+                            ]
+                        },
+                        {
+                            "match3": [
+                                [
+                                    "Julie",
+                                    2
+                                ],
+                                [
+                                    "Maxime",
+                                    1
+                                ]
+                            ]
+                        }
+                    ],
+                    "Heure de debut": "15:58",
+                    "Heure de fin": ""
+                }
+            ],
+            "Round actuel": 5,
             "Nombre de rounds": 4
         }
     }

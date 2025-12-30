@@ -81,7 +81,6 @@ class Round_controllers:
                 if p["Identifiant"] == player2.player_id:
                     p["Adversaires"].append(player1.player_id)
 
-            # next(p for p in tournoi.players if p["player"] == player)["play_against"].append(opponent)
             match1 = Match(name, player1, player2)
             match_data = match1.to_dict()
             round1.matches.append(match_data)
@@ -89,6 +88,7 @@ class Round_controllers:
         tournoi.rounds.append(round1.to_dict())
         return tournoi
 
+    """
     # genère le round suivant
     @staticmethod
     def generate_swiss_pairings(tournoi: Tournament):
@@ -143,6 +143,73 @@ class Round_controllers:
                             p["Adversaires"].append(player.player_id)
 
                     break
+
+        return pairings
+"""
+
+    @staticmethod
+    def generate_swiss_pairings(tournoi: Tournament):
+        from chess.models.player import Player
+
+        players = [Player.from_dict(p) for p in tournoi.players]
+        players.sort(key=lambda p: p.score, reverse=True)
+
+        used = set()
+        result = []
+
+        def backtrack():
+            if len(used) == len(players):
+                return True
+
+            # Premier joueur libre
+            player = next(p for p in players if p.player_id not in used)
+
+            player_entry = next(
+                p for p in tournoi.players if p["Identifiant"] == player.player_id
+            )
+
+            for opponent in players:
+                if opponent.player_id in used:
+                    continue
+                if opponent.player_id == player.player_id:
+                    continue
+                if opponent.player_id in player_entry["Adversaires"]:
+                    continue
+
+                # Essai
+                used.add(player.player_id)
+                used.add(opponent.player_id)
+                result.append((player, opponent))
+
+                if backtrack():
+                    return True
+
+                # Annulation
+                used.remove(player.player_id)
+                used.remove(opponent.player_id)
+                result.pop()
+
+            return False
+
+        backtrack()
+
+        # Mise en forme + mise à jour adversaires
+        pairings = []
+        for p1, p2 in result:
+            pairings.append(
+                {
+                    "player_1": f"{p1.name} {p1.last_name}",
+                    "player_2": f"{p2.name} {p2.last_name}",
+                    "ids": (p1.player_id, p2.player_id),
+                    "Score": (p1.score, p2.score),
+                }
+            )
+
+            for p in tournoi.players:
+                if p["Identifiant"] == p1.player_id:
+                    p["Adversaires"].append(p2.player_id)
+                if p["Identifiant"] == p2.player_id:
+                    p["Adversaires"].append(p1.player_id)
 
         return pairings
 
