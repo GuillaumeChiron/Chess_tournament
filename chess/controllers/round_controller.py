@@ -22,13 +22,13 @@ class Round_controllers:
     @staticmethod
     def update_round(tournoi):
         from chess.models.round import Round
-        from chess.views.match_view import ask_scores
+        from chess.views.match_view import Match_views
 
         round = Round.from_dict(tournoi.rounds[tournoi.current_round_index - 1])
         round.start_round()
         liste_new_score = []
         for data in round.matches:
-            new_scores = ask_scores(data)
+            new_scores = Match_views.ask_scores(data)
             for p in tournoi.players:
                 if p["Prenom"] == new_scores.player1.name:
                     p["Score"] = new_scores.player1.score
