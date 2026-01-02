@@ -48,7 +48,12 @@ class Reports_controller:
         for title in titles:
             table_players.add_column(title)
         for info in all_users:
-            table_players.add_row(info["Prenom"], info["Nom"], info["Identifiant"], info["Date_de_naissance"])
+            table_players.add_row(
+                info["Prenom"],
+                info["Nom"],
+                info["Identifiant"],
+                info["Date_de_naissance"],
+            )
         return table_players
 
     # affiche un tournoi de la base de données dans un tableau
@@ -69,8 +74,10 @@ class Reports_controller:
             table_tournament.add_column(list_of_keys[i])
 
         for info in result:
-            table_tournament.add_row(info["Nom"], info["Date de debut"],info["Date de fin"])
-  
+            table_tournament.add_row(
+                info["Nom"], info["Date de debut"], info["Date de fin"]
+            )
+
         return table_tournament
 
     # affiche tous les tournois de la base de données dans un tableau
@@ -86,15 +93,15 @@ class Reports_controller:
             header_style="blue bold",
             style="blue",
         )
-        
+
         list_of_keys = []
         for cle in all_tournaments[0].keys():
             list_of_keys.append(cle)
-        
+
         titles = list_of_keys[0:2]
         for title in titles:
             table_tournaments.add_column(title)
-        
+
         for info in all_tournaments:
             table_tournaments.add_row(info["Nom"], info["Lieu"])
 
@@ -108,8 +115,10 @@ class Reports_controller:
 
         # création du tableau
         table_tournament = Table(
-            title=tournoi, style="blue", row_styles=["none", "blue"],
-            header_style="blue bold"
+            title=tournoi,
+            style="blue",
+            row_styles=["none", "blue"],
+            header_style="blue bold",
         )
 
         players = result[0]["Joueurs"]
@@ -123,34 +132,44 @@ class Reports_controller:
         for title in titles:
             table_tournament.add_column(title)
         for info in players:
-            table_tournament.add_row(info["Prenom"], info["Nom"], info["Identifiant"], info["Date_de_naissance"])
-       
+            table_tournament.add_row(
+                info["Prenom"],
+                info["Nom"],
+                info["Identifiant"],
+                info["Date_de_naissance"],
+            )
+
         return table_tournament
-    
+
     @staticmethod
-    def tournament_list_rounds(tournoi):
+    def tournament_list_rounds(tournoi: str) -> Table:
         from chess.models.round import Round
         from chess.models.match import Match
 
         result = tournaments_db.search(
             qr.Nom.test(lambda v: v.lower() == tournoi.lower())
         )
-         
-         # création du tableau
+
+        # création du tableau
         table_tournament = Table(
-        title=tournoi, style="blue", row_styles=["none", "blue"],
-        header_style="blue bold"
+            title=tournoi,
+            style="blue",
+            row_styles=["none", "blue"],
+            header_style="blue bold",
         )
         table_tournament.add_column("Round")
         table_tournament.add_column("matchs")
 
-        rounds = result[0]["Rounds"]
-        for r in rounds:
+        rounds_data = result[0]["Rounds"]
+        for r in rounds_data:
             round = Round.from_dict(r)
+
             matches = []
             for m in round.matches:
                 match = Match.from_dict(m)
-                matches.append(f"{match.name}: {match.player1.name} {str(match.player1.score)} / {match.player2.name} {str(match.player2.score)}")
-                table_tournament.add_row(round.name, matches[0])
-            
+                matches.append(
+                    f"{match.name}: {match.player1.name} {str(match.player1.score)} / {match.player2.name} {str(match.player2.score)}"
+                )
+            table_tournament.add_row(round.name, str(matches))
+
         return table_tournament
