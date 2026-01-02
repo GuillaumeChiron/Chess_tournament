@@ -170,6 +170,7 @@ class Reports_controller:
                 matches.append(
                     f"{match.name}: {match.player1.name} {str(match.player1.score)} / {match.player2.name} {str(match.player2.score)}"
                 )
-            table_tournament.add_row(round.name, str(matches))
+            matches_str = " - ".join(matches)
+            table_tournament.add_row(round.name, matches_str)
 
         return table_tournament
