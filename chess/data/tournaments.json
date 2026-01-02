@@ -3,8 +3,8 @@
         "1": {
             "Nom": "Tournoi 1",
             "Lieu": "Nantes",
-            "Date de debut": "",
-            "Date de fin": "",
+            "Date de debut": "12/12/2025",
+            "Date de fin": "15/12/2025",
             "Joueurs": [
                 {
                     "Prenom": "Arnaud",
