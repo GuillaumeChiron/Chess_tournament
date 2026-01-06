@@ -7,7 +7,7 @@ rich = Console()
 class Match_views:
 
     @staticmethod
-    def ask_scores(data):
+    def ask_scores(data: dict) -> Match:
         match = Match.from_dict(data)
         rich.print(
             f"{match.name}:\n {match.player1.name} {match.player1.score} / {match.player2.name} {match.player2.score}"
