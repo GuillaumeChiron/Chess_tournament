@@ -60,5 +60,17 @@ class Tournament_controller:
 
     # execute un tournoi
     @staticmethod
-    def run_tournament(tournoi):
-        pass
+    def run_tournament(name_tournoi: str) -> Tournament:
+        from chess.controllers.round_controller import Round_controllers
+
+        tournoi = Tournament_controller.get_tournament(name_tournoi)
+        tournoi = Round_controllers.generate_first_round(tournoi)
+        tournoi = Tournament_controller.launch_round(tournoi)
+
+        while tournoi.current_round_index <= tournoi.total_rounds:
+
+            pairing = Round_controllers.generate_swiss_pairings(tournoi)
+            tournoi = Round_controllers.generate_next_round(tournoi, pairing)
+            tournoi = Tournament_controller.launch_round(tournoi)
+            # Tournament_controller.update_tournament(tournoi)
+        return tournoi
