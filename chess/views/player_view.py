@@ -32,7 +32,7 @@ class Player_views:
 
     # selecionne les joueurs pour un tournoi
     @staticmethod
-    def select_players():
+    def select_players() -> list:
         from chess.models.player import Player
 
         liste_players = []

@@ -143,7 +143,7 @@ class Reports_controller:
         for cle in players[0].keys():
             list_of_keys.append(cle)
 
-        titles = list_of_keys[0:4]
+        titles = list_of_keys[0:5]
         for title in titles:
             table_tournament.add_column(title)
         for info in players:
@@ -152,6 +152,7 @@ class Reports_controller:
                 info["Nom"],
                 info["Identifiant"],
                 info["Date_de_naissance"],
+                str(info["Score"]),
             )
 
         return table_tournament
