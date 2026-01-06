@@ -8,6 +8,7 @@ class Match:
         self.player2 = player2
 
     def to_dict(self):
+        # retoune les données d'un match sous la forme d'un dictionnaire
         return {
             self.name: (
                 [self.player1.name, self.player1.score],
@@ -18,7 +19,7 @@ class Match:
     @classmethod
     def from_dict(cls, dict):
         for cle, value in dict.items():
-
+            # permet de recréer l'objet Match
             return cls(
                 name=cle,
                 player1=Player(value[0][0], "", None, None, value[0][1]),

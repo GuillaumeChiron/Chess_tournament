@@ -10,6 +10,7 @@ class Player:
         self.player_against = player_against
 
     def to_dict(self):
+        # retourne les données d'un joueur sous la forme d'un dictionnaire
         return {
             "Prenom": self.name,
             "Nom": self.last_name,
@@ -21,6 +22,7 @@ class Player:
 
     @classmethod
     def from_dict(cls, dict):
+        # permet de récréer l'objet joueur
         return cls(
             name=dict["Prenom"],
             last_name=dict["Nom"],

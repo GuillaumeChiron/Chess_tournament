@@ -22,16 +22,19 @@ class Tournament:
         self.start_date = ""
         self.end_date = ""
 
+    # debut d'un tournoi
     def start_tournament(self):
         heure = datetime.now()
         self.start_date = heure.strftime("%d/%m/%Y")
         return self.start_date
 
+    # fin d'un tournoi
     def end_tournament(self):
         heure = datetime.now()
         self.end_date = heure.strftime("%d/%m/%Y")
 
     def to_dict(self):
+        # retourne les données d'un tournoi sous la forme d'un dictionnaire
         return {
             "Nom": self.name,
             "Lieu": self.location,
@@ -46,6 +49,7 @@ class Tournament:
 
     @classmethod
     def from_dict(cls, dict):
+        # permet de récréer un objet tournoi
         tournoi = cls(
             name=dict["Nom"],
             location=dict["Lieu"],
