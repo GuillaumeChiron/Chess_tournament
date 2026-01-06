@@ -1,17 +1,14 @@
-from rich.console import Console
-from rich.table import Table
 from tinydb import Query, TinyDB
-
 from chess.models.tournament import Tournament
 
-rich = Console()
+# initialise la base de données et les recherches dans la base de données
 tournaments_db = TinyDB("chess/data/tournaments.json")
 qr = Query()
 
 
 class Tournament_controller:
 
-    # ajoute un tournoi dans la base de données
+    # Créer un tournoi
     @staticmethod
     def create_tournament(name, location, players, description, rounds=4):
         tournament = Tournament(
@@ -30,13 +27,13 @@ class Tournament_controller:
         if not tournaments_db.search(qr.Nom == tournament.name):
             tournaments_db.insert(tournament_data)
 
-    # met à jour un tournoi
+    # met à jour un tournoi de la base de données
     @staticmethod
     def update_tournament(tournoi):
         data = tournoi.to_dict()
         tournaments_db.update(data, qr.Nom == tournoi.name)
 
-    # recupère les données du fichier "tournaments.json"
+    # recupère les données des tournois du fichier "tournaments.json"
     @staticmethod
     def load_tournaments():
         all_tournaments = tournaments_db.all()

@@ -1,6 +1,7 @@
 from rich.table import Table
 from tinydb import Query, TinyDB
 
+# initialise la base de données et les recherches dans la base de données
 tournaments_db = TinyDB("chess/data/tournaments.json")
 players_db = TinyDB("chess/data/players.json")
 qr = Query()
@@ -8,7 +9,7 @@ qr = Query()
 
 class Reports_controller:
 
-    # Retourne un joueur de la base de données dans un tableau
+    # Affiche un joueur de la base de données dans un tableau
     @staticmethod
     def player(data):
         # cherche le joueur dans la base de donnée
@@ -22,12 +23,13 @@ class Reports_controller:
             table_player = Table(
                 title=result[0]["Prenom"], style="blue", header_style="blue bold"
             )
+            # recupere les données et les ajoute dans les colonnes et les lignes
             for cle in info.keys():
                 table_player.add_column(cle)
             table_player.add_row(*[str(value) for value in info.values()])
         return table_player
 
-    # Retourne tous les joueurs de la base de données dans un tableau
+    # Affiche tous les joueurs de la base de données dans un tableau
     @staticmethod
     def list_players():
         # Stock les données de players.json dans "all_users"
@@ -41,6 +43,7 @@ class Reports_controller:
             header_style="blue bold",
             style="blue",
         )
+        # recupère les données et les ajoute dans les colonnes et les lignes
         list_of_keys = []
         for cle in all_users[0].keys():
             list_of_keys.append(cle)
@@ -56,7 +59,7 @@ class Reports_controller:
             )
         return table_players
 
-    # affiche un tournoi de la base de données dans un tableau
+    # Affiche un tournoi de la base de données dans un tableau
     @staticmethod
     def tournament(tournoi):
         result = tournaments_db.search(
@@ -67,6 +70,7 @@ class Reports_controller:
         table_tournament = Table(
             title="Tournoi", style="blue", header_style="blue bold"
         )
+        # recupere les données et les ajoute dans les colonnes et les lignes
         list_of_keys = []
         for cle in result[0].keys():
             list_of_keys.append(cle)
@@ -80,7 +84,7 @@ class Reports_controller:
 
         return table_tournament
 
-    # affiche tous les tournois de la base de données dans un tableau
+    # Affiche tous les tournois de la base de données dans un tableau
     @staticmethod
     def list_tournaments():
         # stock les données de tournaments.json dans "all_tournaments"
@@ -93,7 +97,7 @@ class Reports_controller:
             header_style="blue bold",
             style="blue",
         )
-
+        # recupere les données et les ajoute dans les colonnes et les lignes
         list_of_keys = []
         for cle in all_tournaments[0].keys():
             list_of_keys.append(cle)
@@ -107,6 +111,7 @@ class Reports_controller:
 
         return table_tournaments
 
+    # Affiche tous les joueurs d'un tournoi dans un tableau
     @staticmethod
     def tournament_list_players(tournoi):
         result = tournaments_db.search(
@@ -120,10 +125,11 @@ class Reports_controller:
             row_styles=["none", "blue"],
             header_style="blue bold",
         )
-
+        # recupère les la liste des joueurs et les tries par ordre alphabétique
         players = result[0]["Joueurs"]
         players = sorted(players, key=lambda x: x["Nom"].lower())
 
+        # recupère les données et le sajote dans les colonnes et les lignes
         list_of_keys = []
         for cle in players[0].keys():
             list_of_keys.append(cle)
@@ -140,7 +146,8 @@ class Reports_controller:
             )
 
         return table_tournament
-
+    
+    # Affiche les rounds avec les matchs les concernants d'un tournoi dans un tableau
     @staticmethod
     def tournament_list_rounds(tournoi: str) -> Table:
         from chess.models.round import Round
@@ -157,9 +164,11 @@ class Reports_controller:
             row_styles=["none", "blue"],
             header_style="blue bold",
         )
+        # création des colonnes
         table_tournament.add_column("Round")
         table_tournament.add_column("matchs")
 
+        #recupere les données et les ajoute dans les lignes
         rounds_data = result[0]["Rounds"]
         for r in rounds_data:
             round = Round.from_dict(r)

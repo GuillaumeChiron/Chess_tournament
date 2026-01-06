@@ -1,12 +1,8 @@
 import random
-
-from rich.console import Console
 from tinydb import Query, TinyDB
-
-from chess.controllers.match_controller import Match_controllers
 from chess.models.tournament import Tournament
 
-rich = Console()
+# initialise la base de données et les recherches dans la base de données
 tournaments_db = TinyDB("chess/data/tournaments.json")
 qr = Query()
 
@@ -24,6 +20,7 @@ class Round_controllers:
         from chess.models.round import Round
         from chess.views.match_view import Match_views
 
+        # recréer un round et met à jour les nouveaux score des matchs
         round = Round.from_dict(tournoi.rounds[tournoi.current_round_index - 1])
         round.start_round()
         liste_new_score = []
@@ -49,7 +46,7 @@ class Round_controllers:
             joueurs.append(info)
         return joueurs
 
-    # genère le premier round dun tournoi
+    # genère le premier round d'un tournoi
     @staticmethod
     def generate_first_round(tournoi: Tournament):
         from chess.models.match import Match
@@ -61,6 +58,7 @@ class Round_controllers:
         for p in players_copy:
             list_of_players.append(p)
 
+        # création du round
         round1 = Round("Round 1")
         count = 1
         for i in range(int(len(list_of_players) / 2)):
@@ -75,12 +73,14 @@ class Round_controllers:
             player1 = Player.from_dict(tirage[0])
             player2 = Player.from_dict(tirage[1])
 
+            # ajoute et stock les adversaires des joueurs dans une liste
             for p in tournoi.players:
                 if p["Identifiant"] == player1.player_id:
                     p["Adversaires"].append(player2.player_id)
                 if p["Identifiant"] == player2.player_id:
                     p["Adversaires"].append(player1.player_id)
-
+                   
+            # recréer le match et l'ajoute au round
             match1 = Match(name, player1, player2)
             match_data = match1.to_dict()
             round1.matches.append(match_data)
@@ -88,65 +88,7 @@ class Round_controllers:
         tournoi.rounds.append(round1.to_dict())
         return tournoi
 
-    """
-    # genère le round suivant
-    @staticmethod
-    def generate_swiss_pairings(tournoi: Tournament):
-        from chess.models.player import Player
-
-        pairings = []
-        used_ids = set()
-
-        players_copy = tournoi.players.copy()
-        list_of_players = []
-        for p in players_copy:
-            object_player = Player.from_dict(p)
-            list_of_players.append(object_player)
-
-        # Tri par score décroissant
-        list_of_players = sorted(list_of_players, key=lambda p: p.score, reverse=True)
-
-        for i, player in enumerate(list_of_players):
-
-            if player.player_id in used_ids:
-                continue
-
-            for opponent in list_of_players[i + 1 :]:
-                if opponent.player_id in used_ids:
-                    continue
-
-                player_entry = next(
-                    (
-                        p
-                        for p in tournoi.players
-                        if p["Identifiant"] == player.player_id
-                    ),
-                    None,
-                )
-
-                if opponent.player_id not in player_entry["Adversaires"]:
-                    used_ids.add(player.player_id)
-                    used_ids.add(opponent.player_id)
-
-                    pairings.append(
-                        {
-                            "player_1": f"{player.name} {player.last_name}",
-                            "player_2": f"{opponent.name} {opponent.last_name}",
-                            "ids": (player.player_id, opponent.player_id),
-                            "Score": (player.score, opponent.score),
-                        }
-                    )
-                    for p in tournoi.players:
-                        if p["Identifiant"] == player.player_id:
-                            p["Adversaires"].append(opponent.player_id)
-                        if p["Identifiant"] == opponent.player_id:
-                            p["Adversaires"].append(player.player_id)
-
-                    break
-
-        return pairings
-"""
-
+    # genère le pairings pour le round suivant en suivant le format des rounds suisses
     @staticmethod
     def generate_swiss_pairings(tournoi: Tournament):
         from chess.models.player import Player
@@ -193,7 +135,7 @@ class Round_controllers:
 
         backtrack()
 
-        # Mise en forme + mise à jour adversaires
+        # Mise en forme et mise à jour adversaires
         pairings = []
         for p1, p2 in result:
             pairings.append(
@@ -213,8 +155,8 @@ class Round_controllers:
 
         return pairings
 
+    # genère le round suivant
     def generate_next_round(tournoi: Tournament, pairings):
-        from chess.controllers.player_controller import Player_controllers
         from chess.models.match import Match
         from chess.models.player import Player
         from chess.models.round import Round
@@ -223,6 +165,7 @@ class Round_controllers:
         current_round = Round(name_round, [])
         count = 1
 
+        # permet de recréer les joueurs et les matchs pour les stocker dans le round
         for i in pairings:
 
             name_match = "match" + str(count)
@@ -233,13 +176,16 @@ class Round_controllers:
                 if p["Identifiant"] == i["ids"][1]:
                     player2 = p
 
+            # recréer les joueurs
             player1 = Player.from_dict(player1)
             player2 = Player.from_dict(player2)
 
             player1.score = i["Score"][0]
             player2.score = i["Score"][1]
 
+            # recréer le match
             match = Match(name_match, player1, player2)
             current_round.matches.append(match.to_dict())
         tournoi.rounds.append(current_round.to_dict())
+        
         return tournoi

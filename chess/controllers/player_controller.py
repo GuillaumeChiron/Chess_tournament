@@ -1,11 +1,7 @@
-from rich.console import Console
-from rich.table import Table
 from tinydb import Query, TinyDB
-
 from chess.models.player import Player
 
-# initialise la mise en forme, la base de donnée et les recherches
-rich = Console()
+# initialise la base de données et les recherches dans la base de données
 players_db = TinyDB("chess/data/players.json")
 qr = Query()
 
@@ -68,10 +64,12 @@ class Player_controllers:
         )
         return list_of_players
 
+    # mets à jour les score des joueurs dans un tournoi
     def update_score_players(tournoi):
         from chess.models.match import Match
         from chess.models.round import Round
-
+        
+        # permet de recréer un round
         round = Round.from_dict(tournoi.rounds[tournoi.current_round_index - 1])
         players_copy = tournoi.players.copy()
         liste_object_players = []
@@ -81,6 +79,7 @@ class Player_controllers:
             player = Player.from_dict(p)
             liste_object_players.append(player)
 
+        # recréer un match pour mettre à jour les scores
         for m in round.matches:
             match = Match.from_dict(m)
 
@@ -92,9 +91,10 @@ class Player_controllers:
                 elif match.player2.name == p.name:
                     p.score = match.player2.score
                     liste_object_players.remove(p)
-
+                # ajoute dans la liste "liste_players" les nouveau scores
                 liste_players.append(p.to_dict())
 
+        # Tri les joueurs en focntion de leur score par ordre décroissant 
         liste_players.sort(key=lambda x: x["Score"], reverse=True)
         tournoi.players = liste_players
         return tournoi
