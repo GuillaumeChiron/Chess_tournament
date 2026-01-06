@@ -10,7 +10,9 @@ class Tournament_controller:
 
     # Créer un tournoi
     @staticmethod
-    def create_tournament(name, location, players, description, rounds=4):
+    def create_tournament(
+        name: str, location: str, players: list, description: str, rounds=4
+    ) -> Tournament:
         tournament = Tournament(
             name,
             location,
@@ -22,33 +24,33 @@ class Tournament_controller:
 
     # enregistre un tournoi dans la base de données "tournaments.json"
     @staticmethod
-    def save_tournament(tournament):
+    def save_tournament(tournament: Tournament):
         tournament_data = tournament.to_dict()
         if not tournaments_db.search(qr.Nom == tournament.name):
             tournaments_db.insert(tournament_data)
 
     # met à jour un tournoi de la base de données
     @staticmethod
-    def update_tournament(tournoi):
+    def update_tournament(tournoi: Tournament):
         data = tournoi.to_dict()
         tournaments_db.update(data, qr.Nom == tournoi.name)
 
     # recupère les données des tournois du fichier "tournaments.json"
     @staticmethod
-    def load_tournaments():
+    def load_tournaments() -> list:
         all_tournaments = tournaments_db.all()
         return all_tournaments
 
     # recupère un tournoi dans la base de données "tournaments.json"
     @staticmethod
-    def get_tournament(data):
+    def get_tournament(data: str) -> Tournament:
         result = tournaments_db.search(qr.Nom.test(lambda v: v.lower() == data.lower()))
         tournoi = Tournament.from_dict(result[0])
         return tournoi
 
     # execute un round du tournoi
     @staticmethod
-    def launch_round(tournoi):
+    def launch_round(tournoi: Tournament) -> Tournament:
         from chess.controllers.round_controller import Round_controllers
         from chess.controllers.player_controller import Player_controllers
 

@@ -11,7 +11,7 @@ class Reports_controller:
 
     # Affiche un joueur de la base de données dans un tableau
     @staticmethod
-    def player(data):
+    def player(data: str) -> Table:
         # cherche le joueur dans la base de donnée
         result = players_db.search(qr.Prenom.test(lambda v: v.lower() == data.lower()))
 
@@ -19,10 +19,8 @@ class Reports_controller:
             return None
 
         # création du tableau
-      
-        table_player = Table(
-            title="Joueur", style="blue", header_style="blue bold"
-        )
+
+        table_player = Table(title="Joueur", style="blue", header_style="blue bold")
         # recupère les données et les ajoute dans les colonnes et les lignes
         list_of_keys = []
         for cle in result[0].keys():
@@ -39,10 +37,10 @@ class Reports_controller:
                 info["Date_de_naissance"],
             )
         return table_player
-    
+
     # Affiche tous les joueurs de la base de données dans un tableau
     @staticmethod
-    def list_players():
+    def list_players() -> Table:
         # Stock les données de players.json dans "all_users"
         all_users = players_db.all()
         all_users = sorted(all_users, key=lambda x: x["Nom"].lower())
@@ -72,7 +70,7 @@ class Reports_controller:
 
     # Affiche un tournoi de la base de données dans un tableau
     @staticmethod
-    def tournament(tournoi):
+    def tournament(tournoi: str) -> Table:
         result = tournaments_db.search(
             qr.Nom.test(lambda v: v.lower() == tournoi.lower())
         )
@@ -97,7 +95,7 @@ class Reports_controller:
 
     # Affiche tous les tournois de la base de données dans un tableau
     @staticmethod
-    def list_tournaments():
+    def list_tournaments() -> Table:
         # stock les données de tournaments.json dans "all_tournaments"
         all_tournaments = tournaments_db.all()
 
@@ -124,7 +122,7 @@ class Reports_controller:
 
     # Affiche tous les joueurs d'un tournoi dans un tableau
     @staticmethod
-    def tournament_list_players(tournoi: str)-> Table:
+    def tournament_list_players(tournoi: str) -> Table:
         result = tournaments_db.search(
             qr.Nom.test(lambda v: v.lower() == tournoi.lower())
         )
@@ -157,7 +155,7 @@ class Reports_controller:
             )
 
         return table_tournament
-    
+
     # Affiche les rounds avec les matchs les concernants d'un tournoi dans un tableau
     @staticmethod
     def tournament_list_rounds(tournoi: str) -> Table:
@@ -179,7 +177,7 @@ class Reports_controller:
         table_tournament.add_column("Round")
         table_tournament.add_column("matchs")
 
-        #recupere les données et les ajoute dans les lignes
+        # recupere les données et les ajoute dans les lignes
         rounds_data = result[0]["Rounds"]
         for r in rounds_data:
             round = Round.from_dict(r)

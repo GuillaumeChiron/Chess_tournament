@@ -11,12 +11,12 @@ class Round_controllers:
 
     # enregistre un round dans la base de données "tournaments.json"
     @staticmethod
-    def save_round(name_tournament, matches):
+    def save_round(name_tournament: str, matches: dict):
         tournaments_db.update({"Rounds": [matches]}, qr.Nom == name_tournament)
 
     # met à jour les scores des joueurs pour un round précis
     @staticmethod
-    def update_round(tournoi):
+    def update_round(tournoi: Tournament) -> Tournament:
         from chess.models.round import Round
         from chess.views.match_view import Match_views
 
@@ -39,7 +39,7 @@ class Round_controllers:
 
     # genère une paire de joueurs aléatoire dans une liste de joueurs donnée
     @staticmethod
-    def generate_pairings(data):
+    def generate_pairings(data: list) -> list:
         tirage = random.sample(data, 2)
         joueurs = []
         for info in tirage:
@@ -48,7 +48,7 @@ class Round_controllers:
 
     # genère le premier round d'un tournoi
     @staticmethod
-    def generate_first_round(tournoi: Tournament):
+    def generate_first_round(tournoi: Tournament) -> Tournament:
         from chess.models.match import Match
         from chess.models.player import Player
         from chess.models.round import Round
@@ -79,7 +79,7 @@ class Round_controllers:
                     p["Adversaires"].append(player2.player_id)
                 if p["Identifiant"] == player2.player_id:
                     p["Adversaires"].append(player1.player_id)
-                   
+
             # recréer le match et l'ajoute au round
             match1 = Match(name, player1, player2)
             match_data = match1.to_dict()
@@ -90,7 +90,7 @@ class Round_controllers:
 
     # genère le pairings pour le round suivant en suivant le format des rounds suisses
     @staticmethod
-    def generate_swiss_pairings(tournoi: Tournament):
+    def generate_swiss_pairings(tournoi: Tournament) -> list:
         from chess.models.player import Player
 
         players = [Player.from_dict(p) for p in tournoi.players]
@@ -156,7 +156,7 @@ class Round_controllers:
         return pairings
 
     # genère le round suivant
-    def generate_next_round(tournoi: Tournament, pairings):
+    def generate_next_round(tournoi: Tournament, pairings: list) -> Tournament:
         from chess.models.match import Match
         from chess.models.player import Player
         from chess.models.round import Round
@@ -187,5 +187,5 @@ class Round_controllers:
             match = Match(name_match, player1, player2)
             current_round.matches.append(match.to_dict())
         tournoi.rounds.append(current_round.to_dict())
-        
+
         return tournoi
