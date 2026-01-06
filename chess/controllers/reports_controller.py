@@ -19,16 +19,27 @@ class Reports_controller:
             return None
 
         # création du tableau
-        for info in result:
-            table_player = Table(
-                title=result[0]["Prenom"], style="blue", header_style="blue bold"
-            )
-            # recupere les données et les ajoute dans les colonnes et les lignes
-            for cle in info.keys():
-                table_player.add_column(cle)
-            table_player.add_row(*[str(value) for value in info.values()])
-        return table_player
+      
+        table_player = Table(
+            title="Joueur", style="blue", header_style="blue bold"
+        )
+        # recupère les données et les ajoute dans les colonnes et les lignes
+        list_of_keys = []
+        for cle in result[0].keys():
+            list_of_keys.append(cle)
 
+        titles = list_of_keys[0:4]
+        for title in titles:
+            table_player.add_column(title)
+        for info in result:
+            table_player.add_row(
+                info["Prenom"],
+                info["Nom"],
+                info["Identifiant"],
+                info["Date_de_naissance"],
+            )
+        return table_player
+    
     # Affiche tous les joueurs de la base de données dans un tableau
     @staticmethod
     def list_players():
@@ -113,7 +124,7 @@ class Reports_controller:
 
     # Affiche tous les joueurs d'un tournoi dans un tableau
     @staticmethod
-    def tournament_list_players(tournoi):
+    def tournament_list_players(tournoi: str)-> Table:
         result = tournaments_db.search(
             qr.Nom.test(lambda v: v.lower() == tournoi.lower())
         )
@@ -129,7 +140,7 @@ class Reports_controller:
         players = result[0]["Joueurs"]
         players = sorted(players, key=lambda x: x["Nom"].lower())
 
-        # recupère les données et le sajote dans les colonnes et les lignes
+        # recupère les données et les ajoute dans les colonnes et les lignes
         list_of_keys = []
         for cle in players[0].keys():
             list_of_keys.append(cle)

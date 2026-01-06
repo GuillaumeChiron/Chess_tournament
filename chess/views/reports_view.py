@@ -35,13 +35,16 @@ class Reports_views:
                 print(" ")
 
             elif option == 3:
-                rich.print("dates d'un tournoi")
+                choice = rich.input("[yellow]Saisir le nom du Tournoi: [/]")
+                rich.print(Reports_controller.tournament(choice))
 
             elif option == 4:
-                rich.print("détails joueurs d'un tournoi")
+                choice = rich.input("[yellow]Saisir le nom du Tournoi: [/]")
+                rich.print(Reports_controller.tournament_list_players(choice))
 
             elif option == 5:
-                rich.print("détails rounds et matchs d'un tournoi")
+                choice = rich.input("[yellow]Saisir le nom du Tournoi: [/]")
+                rich.print(Reports_controller.tournament_list_rounds(choice))
 
             elif option == 6:
                 break
