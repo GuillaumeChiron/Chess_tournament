@@ -1,3 +1,3 @@
-from chess.views.menu import menu_principal
+from chess.views.menu import Menu_views
 
-menu_principal()
+Menu_views.menu_principal()

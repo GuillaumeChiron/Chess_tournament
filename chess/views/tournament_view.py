@@ -1,7 +1,5 @@
 from rich.console import Console
 
-from chess.views.player_view import player_menu
-
 rich = Console()
 
 

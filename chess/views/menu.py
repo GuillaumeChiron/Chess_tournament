@@ -1,8 +1,7 @@
 from rich.console import Console
-
-from chess.views.player_view import player_menu
-from chess.views.reports_view import reports_menu
-from chess.views.tournament_view import tournament_menu
+from chess.views.player_view import Player_views
+from chess.views.reports_view import Reports_views
+from chess.views.tournament_view import Tournament_views
 
 rich = Console()
 
@@ -32,15 +31,15 @@ class Menu_views:
                     option = int(rich.input("[yellow]Veuillez faire votre choix: [/]"))
                     print(" ")
                     if option == 1:
-                        player_menu()
+                        Player_views.player_menu()
                         print(" ")
                     elif option == 2:
-                        tournament_menu()
+                        Tournament_views.tournament_menu()
                         print(" ")
                     elif option == 3:
                         break
             elif choice == 2:
-                reports_menu()
+                Reports_views.reports_menu()
             elif choice == 3:
                 rich.print("Application quittée", style="red bold")
                 print(" ")
