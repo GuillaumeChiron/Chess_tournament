@@ -28,10 +28,12 @@ class Tournament_views:
                 print(" ")
 
             elif option == 2:
-                rich.print("Démarrer un tournoi")
+                name_tournament = rich.input("[yellow]Saisir le nom du tournoi: [/]")
+                Tournament_controller.run_tournament(name_tournament)
 
             elif option == 3:
-                rich.print("Reprendre un tournoi")
+                name_tournament = rich.input("[yellow]Saisir le nom du tournoi: [/]")
+                Tournament_controller.resume_tournament(name_tournament)
 
             elif option == 4:
                 break
