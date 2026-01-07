@@ -22,7 +22,9 @@ class Player_views:
 
             if option == 1:
                 Player_views.add_player()
+                rich.print("Nouveau joueur créé", style="blue bold")
                 print(" ")
+
             elif option == 2:
                 Player_views.print_player()
                 print(" ")
@@ -33,17 +35,16 @@ class Player_views:
     # selecionne les joueurs pour un tournoi
     @staticmethod
     def select_players() -> list:
-        from chess.models.player import Player
 
         liste_players = []
-        count = int(input("Nombre de particiapants: "))
+        count = int(rich.input("[yellow]Nombre de particiapants: [/]"))
         for i in range(count):
-            id = input("Identifiant du joueur: ")
+            id = rich.input("[yellow]Identifiant du joueur: [/]")
             player_data = Player_controllers.get_player(id)
             liste_players.append(player_data[0])
         return liste_players
 
-    # ajouyer un joueur à la base de données
+    # ajouter un joueur à la base de données
     @staticmethod
     def add_player():
         name = rich.input("[yellow]Prénom: [/]")
@@ -57,7 +58,7 @@ class Player_views:
 
     @staticmethod
     def print_player():
-        name = rich.input("[yellow]Quel joueur voulez-vous afficher ? [/]")
+        name = rich.input("[yellow]Prenom du joueur:  [/]")
         print(" ")
         table_player = Reports_controller.player(name)
         if table_player:
