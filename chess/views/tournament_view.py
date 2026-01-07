@@ -13,10 +13,9 @@ class Tournament_views:
         while True:
 
             rich.print("1 Créer un tournoi", style="green bold")
-            rich.print("2 Afficher un tournoi", style="green bold")
-            rich.print("3 Démarrer un tournoi", style="green bold")
-            rich.print("4 Reprendre un tournoi", style="green bold")
-            rich.print("5 Quitter", style="red bold")
+            rich.print("2 Démarrer un tournoi", style="green bold")
+            rich.print("3 Reprendre un tournoi", style="green bold")
+            rich.print("4 Quitter", style="red bold")
             print(" ")
 
             option = int(rich.input("[yellow]Veuillez faire votre choix: [/]"))
