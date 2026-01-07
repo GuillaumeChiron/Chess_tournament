@@ -1,4 +1,5 @@
 from rich.console import Console
+
 from chess.views.player_view import Player_views
 from chess.views.reports_view import Reports_views
 from chess.views.tournament_view import Tournament_views

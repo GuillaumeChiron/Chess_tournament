@@ -1,5 +1,7 @@
 import random
+
 from tinydb import Query, TinyDB
+
 from chess.models.tournament import Tournament
 
 # initialise la base de données et les recherches dans la base de données

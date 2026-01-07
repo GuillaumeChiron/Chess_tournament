@@ -1,6 +1,7 @@
 from rich.console import Console
-from chess.models.tournament import Tournament
+
 from chess.controllers.tournament_controller import Tournament_controller
+from chess.models.tournament import Tournament
 
 rich = Console()
 

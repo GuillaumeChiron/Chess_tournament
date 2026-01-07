@@ -1,4 +1,5 @@
 from tinydb import Query, TinyDB
+
 from chess.models.player import Player
 from chess.models.tournament import Tournament
 
@@ -69,7 +70,7 @@ class Player_controllers:
     def update_score_players(tournoi: Tournament)-> Tournament:
         from chess.models.match import Match
         from chess.models.round import Round
-        
+
         # permet de recréer un round
         round = Round.from_dict(tournoi.rounds[tournoi.current_round_index - 1])
         players_copy = tournoi.players.copy()

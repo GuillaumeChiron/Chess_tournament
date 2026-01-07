@@ -160,8 +160,8 @@ class Reports_controller:
     # Affiche les rounds avec les matchs les concernants d'un tournoi dans un tableau
     @staticmethod
     def tournament_list_rounds(tournoi: str) -> Table:
-        from chess.models.round import Round
         from chess.models.match import Match
+        from chess.models.round import Round
 
         result = tournaments_db.search(
             qr.Nom.test(lambda v: v.lower() == tournoi.lower())

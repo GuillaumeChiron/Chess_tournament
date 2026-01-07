@@ -1,4 +1,5 @@
 from tinydb import Query, TinyDB
+
 from chess.models.tournament import Tournament
 
 # initialise la base de données et les recherches dans la base de données
@@ -51,8 +52,8 @@ class Tournament_controller:
     # execute un round du tournoi
     @staticmethod
     def launch_round(tournoi: Tournament) -> Tournament:
-        from chess.controllers.round_controller import Round_controllers
         from chess.controllers.player_controller import Player_controllers
+        from chess.controllers.round_controller import Round_controllers
 
         tournoi = Round_controllers.update_round(tournoi)
         tournoi.players = Player_controllers.sorted_players(tournoi)
