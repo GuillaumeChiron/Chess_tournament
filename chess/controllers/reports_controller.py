@@ -187,7 +187,8 @@ class Reports_controller:
             for m in round.matches:
                 match = Match.from_dict(m)
                 matches.append(
-                    f"{match.name}: {match.player1.name} {str(match.player1.score)} / {match.player2.name} {str(match.player2.score)}"
+                    f"{match.name}: {match.player1.name} {str(match.player1.score)} / "
+                    f"{match.player2.name} {str(match.player2.score)}"
                 )
             matches_str = " - ".join(matches)
             table_tournament.add_row(round.name, matches_str)

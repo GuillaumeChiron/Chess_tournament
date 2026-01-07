@@ -1,6 +1,4 @@
 from rich.console import Console
-from rich.table import Table
-from tinydb import Query, TinyDB
 
 from chess.controllers.reports_controller import Reports_controller
 
