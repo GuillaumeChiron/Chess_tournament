@@ -64,15 +64,47 @@ class Tournament_controller:
     @staticmethod
     def run_tournament(name_tournoi: str) -> Tournament:
         from chess.controllers.round_controller import Round_controllers
+        from chess.views.tournament_view import Tournament_views
 
         tournoi = Tournament_controller.get_tournament(name_tournoi)
+        tournoi.start_tournament()
         tournoi = Round_controllers.generate_first_round(tournoi)
         tournoi = Tournament_controller.launch_round(tournoi)
 
         while tournoi.current_round_index <= tournoi.total_rounds:
 
-            pairing = Round_controllers.generate_swiss_pairings(tournoi)
-            tournoi = Round_controllers.generate_next_round(tournoi, pairing)
-            tournoi = Tournament_controller.launch_round(tournoi)
-            # Tournament_controller.update_tournament(tournoi)
+            choice = Tournament_views.ask_next_round()
+            if choice == "oui":
+                pairing = Round_controllers.generate_swiss_pairings(tournoi)
+                tournoi = Round_controllers.generate_next_round(tournoi, pairing)
+                tournoi = Tournament_controller.launch_round(tournoi)
+                Tournament_controller.update_tournament(tournoi)
+            elif choice == "non":
+                break
+
+        return tournoi
+
+    # reprendre un tournoi ou on l'a quitté
+    @staticmethod
+    def resume_tournament(name_tournament: str) -> Tournament:
+        from chess.controllers.round_controller import Round_controllers
+        from chess.views.tournament_view import Tournament_views
+
+        tournoi = Tournament_controller.get_tournament(name_tournament)
+        while tournoi.current_round_index <= tournoi.total_rounds:
+
+            choice = Tournament_views.ask_next_round()
+
+            if choice == "oui":
+                pairing = Round_controllers.generate_swiss_pairings(tournoi)
+                tournoi = Round_controllers.generate_next_round(tournoi, pairing)
+                tournoi = Tournament_controller.launch_round(tournoi)
+                Tournament_controller.update_tournament(tournoi)
+
+            elif choice == "non":
+                break
+
+            if tournoi.current_round_index > tournoi.total_rounds:
+                tournoi.end_tournament()
+
         return tournoi
