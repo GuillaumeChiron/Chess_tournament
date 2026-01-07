@@ -1,4 +1,5 @@
 env/
 __pycache__/
+flake8-report/
 test2.py
 test.py

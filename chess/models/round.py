@@ -13,7 +13,7 @@ class Round:
         heure = datetime.now()
         self.start_time = heure.strftime("%H:%M")
         return self.start_time
-    
+
     # fin d'un round
     def end_round(self):
         heure = datetime.now()

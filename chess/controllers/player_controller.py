@@ -12,13 +12,13 @@ class Player_controllers:
 
     # recupère les données des joueurs du fichier "players.json"
     @staticmethod
-    def load_players()-> dict:
+    def load_players() -> dict:
         all_players = players_db.all()
         return all_players
 
     # Créer un joueur
     @staticmethod
-    def create_player(name: str, last_name: str, player_id: str, birth: str)-> Player:
+    def create_player(name: str, last_name: str, player_id: str, birth: str) -> Player:
         player = Player(name, last_name, player_id, birth)
         return player
 
@@ -31,7 +31,7 @@ class Player_controllers:
 
     # Retourne les données d'un ou plusieurs joueurs en fonction de l'attribut
     @staticmethod
-    def get_player(data: str)-> dict:
+    def get_player(data: str) -> dict:
         if players_db.search(qr.Prenom.test(lambda v: v.lower() == data.lower())):
             result = players_db.search(
                 qr.Prenom.test(lambda v: v.lower() == data.lower())
@@ -53,7 +53,7 @@ class Player_controllers:
         return result
 
     # Tri les joueurs en fonction de leur score
-    def sorted_players(tournoi: Tournament)-> list:
+    def sorted_players(tournoi: Tournament) -> list:
 
         players_copy = tournoi.players.copy()
         list_of_players = []
@@ -67,7 +67,7 @@ class Player_controllers:
         return list_of_players
 
     # mets à jour les score des joueurs dans un tournoi
-    def update_score_players(tournoi: Tournament)-> Tournament:
+    def update_score_players(tournoi: Tournament) -> Tournament:
         from chess.models.match import Match
         from chess.models.round import Round
 
@@ -96,7 +96,7 @@ class Player_controllers:
                 # ajoute dans la liste "liste_players" les nouveau scores
                 liste_players.append(p.to_dict())
 
-        # Tri les joueurs en focntion de leur score par ordre décroissant 
+        # Tri les joueurs en focntion de leur score par ordre décroissant
         liste_players.sort(key=lambda x: x["Score"], reverse=True)
         tournoi.players = liste_players
         return tournoi
