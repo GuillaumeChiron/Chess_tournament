@@ -1,6 +1,7 @@
 from rich.console import Console
 
 from chess.controllers.tournament_controller import Tournament_controller
+from chess.models.tournament import Tournament
 
 rich = Console()
 
@@ -59,3 +60,23 @@ class Tournament_views:
     def ask_next_round() -> str:
         choice = rich.input("[yellow]Lancer le round suivant (oui/non): [/]")
         return choice
+
+    # Affiche les scores des joueurs d'un tournoi
+    @staticmethod
+    def print_players_scores(tournoi: Tournament):
+        from chess.models.player import Player
+        from chess.models.round import Round
+
+        # Recréer les joueurs sous fourme d'objet et les stocks dans une liste
+        list_of_players = []
+        for player_data in tournoi.players:
+            player = Player.from_dict(player_data)
+            list_of_players.append(player)
+
+        # affiche les prenoms et noms des joueurs avec leur scores
+        for player_object in list_of_players:
+            rich.print(
+                f"{player_object.name} {player_object.last_name}: {player_object.score}"
+            )
+
+        print(" ")

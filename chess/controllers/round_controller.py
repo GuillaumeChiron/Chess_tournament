@@ -21,10 +21,12 @@ class Round_controllers:
     def update_round(tournoi: Tournament) -> Tournament:
         from chess.models.round import Round
         from chess.views.match_view import Match_views
+        from chess.views.tournament_view import Tournament_views
 
         # recréer un round et met à jour les nouveaux score des matchs
         round = Round.from_dict(tournoi.rounds[tournoi.current_round_index - 1])
         round.start_round()
+        Tournament_views.print_players_scores(tournoi)
         liste_new_score = []
         for data in round.matches:
             new_scores = Match_views.ask_scores(data)
