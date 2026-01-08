@@ -65,7 +65,6 @@ class Tournament_views:
     @staticmethod
     def print_players_scores(tournoi: Tournament):
         from chess.models.player import Player
-        from chess.models.round import Round
 
         # Recréer les joueurs sous fourme d'objet et les stocks dans une liste
         list_of_players = []
@@ -73,10 +72,15 @@ class Tournament_views:
             player = Player.from_dict(player_data)
             list_of_players.append(player)
 
+        # Affiche le round en cours
+        print(" ")
+        rich.print(f"Round {str(tournoi.current_round_index)}", style="purple bold")
+        print(" ")
         # affiche les prenoms et noms des joueurs avec leur scores
         for player_object in list_of_players:
             rich.print(
-                f"{player_object.name} {player_object.last_name}: {player_object.score}"
+                f"{player_object.name} {player_object.last_name}: {player_object.score}",
+                style="blue bold",
             )
 
         print(" ")
