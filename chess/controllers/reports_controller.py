@@ -28,7 +28,7 @@ class Reports_controller:
 
         titles = list_of_keys[0:4]
         for title in titles:
-            table_player.add_column(title)
+            table_player.add_column(title, justify="center")
         for info in result:
             table_player.add_row(
                 info["Prenom"],
@@ -58,7 +58,7 @@ class Reports_controller:
             list_of_keys.append(cle)
         titles = list_of_keys[0:4]
         for title in titles:
-            table_players.add_column(title)
+            table_players.add_column(title, justify="center")
         for info in all_users:
             table_players.add_row(
                 info["Prenom"],
@@ -84,7 +84,7 @@ class Reports_controller:
         for cle in result[0].keys():
             list_of_keys.append(cle)
         for i in (0, 2, 3):
-            table_tournament.add_column(list_of_keys[i])
+            table_tournament.add_column(list_of_keys[i], justify="center")
 
         for info in result:
             table_tournament.add_row(
@@ -112,11 +112,14 @@ class Reports_controller:
             list_of_keys.append(cle)
 
         titles = list_of_keys[0:2]
+        titles.append("Rounds")
         for title in titles:
-            table_tournaments.add_column(title)
+            table_tournaments.add_column(title, justify="center")
 
         for info in all_tournaments:
-            table_tournaments.add_row(info["Nom"], info["Lieu"])
+            table_tournaments.add_row(
+                info["Nom"], info["Lieu"], str(info["Nombre de rounds"])
+            )
 
         return table_tournaments
 
@@ -145,7 +148,7 @@ class Reports_controller:
 
         titles = list_of_keys[0:5]
         for title in titles:
-            table_tournament.add_column(title)
+            table_tournament.add_column(title, justify="center")
         for info in players:
             table_tournament.add_row(
                 info["Prenom"],
@@ -175,8 +178,8 @@ class Reports_controller:
             header_style="blue bold",
         )
         # création des colonnes
-        table_tournament.add_column("Round")
-        table_tournament.add_column("matchs")
+        table_tournament.add_column("Round", justify="center")
+        table_tournament.add_column("matchs", justify="center")
 
         # recupere les données et les ajoute dans les lignes
         rounds_data = result[0]["Rounds"]
@@ -187,8 +190,8 @@ class Reports_controller:
             for m in round.matches:
                 match = Match.from_dict(m)
                 matches.append(
-                    f"{match.name}: {match.player1.name} {str(match.player1.score)} / "
-                    f"{match.player2.name} {str(match.player2.score)}"
+                    f"({match.name}: {match.player1.name} {str(match.player1.score)} / "
+                    f"{match.player2.name} {str(match.player2.score)} -> {round.end_time})"
                 )
             matches_str = " - ".join(matches)
             table_tournament.add_row(round.name, matches_str)
