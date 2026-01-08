@@ -59,8 +59,3 @@ class Tournament_views:
     def ask_next_round() -> str:
         choice = rich.input("[yellow]Lancer le round suivant (oui/non): [/]")
         return choice
-
-    # Affiche un tournoi de la base de données
-    @staticmethod
-    def get_start_tournament():
-        pass
