@@ -71,6 +71,7 @@ class Tournament_controller:
         tournoi.start_tournament()
         tournoi = Round_controllers.generate_first_round(tournoi)
         tournoi = Tournament_controller.launch_round(tournoi)
+        Tournament_controller.update_tournament(tournoi)
 
         while tournoi.current_round_index <= tournoi.total_rounds:
 
@@ -95,6 +96,8 @@ class Tournament_controller:
         while tournoi.current_round_index <= tournoi.total_rounds:
 
             choice = Tournament_views.ask_next_round()
+            if tournoi.current_round_index == tournoi.total_rounds:
+                tournoi.end_tournament()
 
             if choice == "oui":
                 pairing = Round_controllers.generate_swiss_pairings(tournoi)
@@ -104,5 +107,8 @@ class Tournament_controller:
 
             elif choice == "non":
                 break
+
+        if tournoi.current_round_index == tournoi.total_rounds:
+            tournoi.end_tournament()
 
         return tournoi

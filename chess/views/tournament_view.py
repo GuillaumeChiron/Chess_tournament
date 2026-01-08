@@ -46,10 +46,11 @@ class Tournament_views:
         location = rich.input("[yellow]Lieu: [/]")
         players = Player_views.select_players()
         description = rich.input("[yellow]Description: [/]")
+        rounds = int(rich.input("[yellow]Nombre de rounds: [/]"))
         print(" ")
 
         tournoi = Tournament_controller.create_tournament(
-            name, location, players, description
+            name, location, players, description, rounds
         )
         Tournament_controller.save_tournament(tournoi)
 

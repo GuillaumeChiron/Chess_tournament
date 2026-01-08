@@ -36,6 +36,7 @@ class Round_controllers:
 
             liste_new_score.append(new_scores.to_dict())
         round.matches = liste_new_score
+        round.end_round()
         tournoi.rounds[tournoi.current_round_index - 1] = round.to_dict()
         return tournoi
 
