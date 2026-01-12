@@ -27,3 +27,7 @@ L’objectif est de créer un programme qui fonctionne de manière locale afin q
 ### Utilisation
 
 *(Ajouter ici les instructions d'utilisation)*
+
+### Générer un nouveau fichier flake8-html
+
+*(Ajouter ici les insttructions d'utilisation)*
