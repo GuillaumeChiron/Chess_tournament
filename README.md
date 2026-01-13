@@ -75,4 +75,4 @@ Le projet est structuré selon le modèle **MVC (Modèle – Vue – Contrôleur
 ## Générer un nouveau fichier flake8-html
 
   ```bash
-  flake8 --exclude=env,__pycache__,test.py,test2.py --max-line-length=119 --format=html --htmldir=flake8-report
+  flake8 --exclude=env,__pycache__ --max-line-length=119 --format=html --htmldir=flake8-report
