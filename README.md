@@ -70,7 +70,7 @@ Le projet est structuré selon le modèle **MVC (Modèle – Vue – Contrôleur
 
 2. Entrez dans l'interface le chiffre que vous souhaitez afin de vous rendre soit dans les tournois ou soit dans les rapports.
 
-3. Esuite entrez dans l'interface le chiffre que vous souhaitez afin d'executer une fonction précise (par exemple: afficher les joueurs de la base de données).
+3. Ensuite entrez dans l'interface le chiffre que vous souhaitez afin d'executer une fonction précise (par exemple: afficher les joueurs de la base de données).
 
 ## Générer un nouveau fichier flake8-html
 
