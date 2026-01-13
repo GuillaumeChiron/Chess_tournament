@@ -84,6 +84,9 @@ class Tournament_controller:
             elif choice == "non":
                 break
 
+            if tournoi.current_round_index == tournoi.total_rounds:
+                tournoi.end_tournament()
+
         return tournoi
 
     # reprendre un tournoi ou on l'a quitté
