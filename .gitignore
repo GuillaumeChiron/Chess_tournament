@@ -1,6 +1,5 @@
 env/
 __pycache__/
 .DS_Store
-flake8-report/
 test2.py
 test.py
